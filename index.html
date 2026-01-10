@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Avaliação de iPhone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #00ff88;
+    }
+
+    .box {
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 420px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      background: #00ff88;
+      font-weight: bold;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .resultado {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      display: none;
+    }
+
+    .aprovado {
+      background: #103b24;
+      color: #00ff88;
+    }
+
+    .reprovado {
+      background: #3b1010;
+      color: #ff6b6b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>📱 Avaliação de iPhone</h1>
+
+  <div class="box">
+
+    <label>Modelo do iPhone</label>
+    <select id="modelo">
+      <option value="">Selecione</option>
+      <option value="11">iPhone 11</option>
+      <option value="12">iPhone 12</option>
+      <option value="13">iPhone 13</option>
+      <option value="14">iPhone 14</option>
+      <option value="15">iPhone 15</option>
+    </select>
+
+    <label>Valor base do fornecedor (R$)</label>
+    <input type="number" id="valorFornecedor">
+
+    <label>Saúde da bateria (%)</label>
+    <input type="number" id="bateria">
+
+    <label>Possui Nota Fiscal?</label>
+    <select id="nota">
+      <option value="Sim">Sim</option>
+      <option value="Não">Não</option>
+    </select>
+
+    <label>Já teve reparo?</label>
+    <select id="reparo">
+      <option value="Não">Não</option>
+      <option value="Sim">Sim</option>
+    </select>
+
+    <label>Possui caixa?</label>
+    <select id="caixa">
+      <option value="Sim">Sim</option>
+      <option value="Não">Não</option>
+    </select>
+
+    <label>Cor do aparelho</label>
+    <select id="cor">
+      <option>Preto</option>
+      <option>Branco</option>
+      <option>Azul</option>
+      <option>Verde</option>
+      <option>Lilás</option>
+      <option>Amarelo</option>
+      <option>Vermelho</option>
+      <option>Rosa</option>
+    </select>
+
+    <label>Modelo desejado</label>
+    <input type="text" id="modeloNovo">
+
+    <label>Valor do modelo desejado (R$)</label>
+    <input type="number" id="valorNovo">
+
+    <button onclick="avaliar()">Ver Resultado</button>
+
+    <div id="resultado" class="resultado"></div>
+
+  </div>
+
+  <script>
+    function avaliar() {
+
+      let valor = Number(document.getElementById("valorFornecedor").value);
+      let bateria = Number(document.getElementById("bateria").value);
+      let nota = document.getElementById("nota").value;
+      let reparo = document.getElementById("reparo").value;
+      let caixa = document.getElementById("caixa").value;
+      let valorNovo = Number(document.getElementById("valorNovo").value);
+
+      if (!valor || !bateria || !valorNovo) {
+        alert("Preencha todos os campos corretamente.");
+        return;
+      }
+
+      let desconto = 0;
+
+      if (bateria < 85) desconto += 300;
+      if (nota === "Não") desconto += 200;
+      if (reparo === "Sim") desconto += 400;
+      if (caixa === "Não") desconto += 100;
+
+      let valorFinal = valor - desconto;
+      if (valorFinal < 0) valorFinal = 0;
+
+      let diferenca = valorNovo - valorFinal;
+
+      let resultado = document.getElementById("resultado");
+      resultado.style.display = "block";
+
+      if (valorFinal >= 1000) {
+        resultado.className = "resultado aprovado";
+        resultado.innerHTML = `
+          🎉 <b>Upgrade aprovado!</b><br><br>
+          💰 Valor avaliado: <b>R$ ${valorFinal}</b><br>
+          🔄 Diferença a pagar: <b>R$ ${diferenca}</b>
+        `;
+      } else {
+        resultado.className = "resultado reprovado";
+        resultado.innerHTML = `
+          😞 <b>Upgrade não aprovado</b><br><br>
+          Valor avaliado muito baixo para entrada.
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
