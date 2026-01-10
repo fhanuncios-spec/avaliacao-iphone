@@ -1,182 +1,201 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Avaliação de iPhone</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliação de iPhone – Upgrade</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #fff;
-      padding: 20px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #00ff88;
-    }
-
-    .box {
-      background: #1c1c1c;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 420px;
-      margin: auto;
-    }
-
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 6px;
-      border: none;
-      font-size: 16px;
-    }
-
-    button {
-      background: #00ff88;
-      font-weight: bold;
-      margin-top: 20px;
-      cursor: pointer;
-    }
-
-    .resultado {
-      margin-top: 20px;
-      padding: 15px;
-      border-radius: 10px;
-      display: none;
-    }
-
-    .aprovado {
-      background: #103b24;
-      color: #00ff88;
-    }
-
-    .reprovado {
-      background: #3b1010;
-      color: #ff6b6b;
-    }
-  </style>
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: #f2f2f7;
+  padding: 20px;
+}
+.container {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 420px;
+  margin: auto;
+}
+h1 {
+  text-align: center;
+}
+label {
+  margin-top: 12px;
+  display: block;
+  font-weight: 600;
+}
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+button {
+  background: #000;
+  color: #fff;
+  margin-top: 20px;
+}
+.result {
+  margin-top: 20px;
+  padding: 16px;
+  border-radius: 12px;
+}
+.aprovado {
+  background: #e6f4ea;
+  color: #137333;
+}
+.reprovado {
+  background: #fce8e6;
+  color: #a50e0e;
+}
+pre {
+  white-space: pre-wrap;
+  font-size: 15px;
+}
+</style>
 </head>
 
 <body>
 
-  <h1>📱 Avaliação de iPhone</h1>
+<div class="container">
+<h1>📱 Avaliação de iPhone</h1>
 
-  <div class="box">
+<label>Modelo de Entrada</label>
+<input id="modeloEntrada" placeholder="Ex: iPhone 15 Pro Max - 256GB">
 
-    <label>Modelo do iPhone</label>
-    <select id="modelo">
-      <option value="">Selecione</option>
-      <option value="11">iPhone 11</option>
-      <option value="12">iPhone 12</option>
-      <option value="13">iPhone 13</option>
-      <option value="14">iPhone 14</option>
-      <option value="15">iPhone 15</option>
-    </select>
+<label>Valor do Fornecedor (R$)</label>
+<input id="valorFornecedor" type="number">
 
-    <label>Valor base do fornecedor (R$)</label>
-    <input type="number" id="valorFornecedor">
+<label>Saúde da bateria (%)</label>
+<input id="bateria" type="number">
 
-    <label>Saúde da bateria (%)</label>
-    <input type="number" id="bateria">
+<label>Possui Nota Fiscal?</label>
+<select id="nota">
+  <option>Sim</option>
+  <option>Não</option>
+</select>
 
-    <label>Possui Nota Fiscal?</label>
-    <select id="nota">
-      <option value="Sim">Sim</option>
-      <option value="Não">Não</option>
-    </select>
+<label>Já teve reparo?</label>
+<select id="reparo">
+  <option>Não</option>
+  <option>Sim</option>
+</select>
 
-    <label>Já teve reparo?</label>
-    <select id="reparo">
-      <option value="Não">Não</option>
-      <option value="Sim">Sim</option>
-    </select>
+<label>Possui caixa?</label>
+<select id="caixa">
+  <option>Sim</option>
+  <option>Não</option>
+</select>
 
-    <label>Possui caixa?</label>
-    <select id="caixa">
-      <option value="Sim">Sim</option>
-      <option value="Não">Não</option>
-    </select>
+<label>Cor</label>
+<select id="cor">
+  <option>Preto</option>
+  <option>Branco</option>
+  <option>Azul</option>
+  <option>Verde</option>
+  <option>Lilás</option>
+  <option>Amarelo</option>
+  <option>Vermelho</option>
+  <option>Rosa</option>
+</select>
 
-    <label>Cor do aparelho</label>
-    <select id="cor">
-      <option>Preto</option>
-      <option>Branco</option>
-      <option>Azul</option>
-      <option>Verde</option>
-      <option>Lilás</option>
-      <option>Amarelo</option>
-      <option>Vermelho</option>
-      <option>Rosa</option>
-    </select>
+<label>Aplicar desvalorização geral de R$200?</label>
+<select id="desval">
+  <option>Sim</option>
+  <option>Não</option>
+</select>
 
-    <label>Modelo desejado</label>
-    <input type="text" id="modeloNovo">
+<label>Modelo desejado</label>
+<input id="modeloDesejado" placeholder="Ex: iPhone 16 Pro Max - 256GB - Lacrado">
 
-    <label>Valor do modelo desejado (R$)</label>
-    <input type="number" id="valorNovo">
+<label>Valor do iPhone desejado (R$)</label>
+<input id="valorNovo" type="number">
 
-    <button onclick="avaliar()">Ver Resultado</button>
+<button onclick="avaliar()">Avaliar Upgrade</button>
 
-    <div id="resultado" class="resultado"></div>
+<div id="resultado"></div>
+</div>
 
-  </div>
+<script>
+function avaliar() {
+  let valorFornecedor = Number(valorFornecedorInput.value);
+  let bateria = Number(bateriaInput.value);
+  let nota = notaInput.value;
+  let reparo = reparoInput.value;
+  let caixa = caixaInput.value;
+  let cor = corInput.value;
+  let desval = desvalInput.value;
 
-  <script>
-    function avaliar() {
+  let modeloEntrada = modeloEntradaInput.value;
+  let modeloDesejado = modeloDesejadoInput.value;
+  let valorNovo = Number(valorNovoInput.value);
 
-      let valor = Number(document.getElementById("valorFornecedor").value);
-      let bateria = Number(document.getElementById("bateria").value);
-      let nota = document.getElementById("nota").value;
-      let reparo = document.getElementById("reparo").value;
-      let caixa = document.getElementById("caixa").value;
-      let valorNovo = Number(document.getElementById("valorNovo").value);
+  let valorAvaliado = valorFornecedor;
+  let aprovado = true;
 
-      if (!valor || !bateria || !valorNovo) {
-        alert("Preencha todos os campos corretamente.");
-        return;
-      }
+  if (nota === "Não" || reparo === "Sim") {
+    aprovado = false;
+  }
 
-      let desconto = 0;
+  if (aprovado) {
+    if (bateria < 86) valorAvaliado -= 300;
+    else if (bateria <= 89) valorAvaliado -= 150;
 
-      if (bateria < 85) desconto += 300;
-      if (nota === "Não") desconto += 200;
-      if (reparo === "Sim") desconto += 400;
-      if (caixa === "Não") desconto += 100;
+    if (caixa === "Não") valorAvaliado -= 100;
+    if (["Lilás","Amarelo","Vermelho","Rosa"].includes(cor)) valorAvaliado -= 100;
+    if (desval === "Sim") valorAvaliado -= 200;
+  }
 
-      let valorFinal = valor - desconto;
-      if (valorFinal < 0) valorFinal = 0;
+  let resultado = document.getElementById("resultado");
 
-      let diferenca = valorNovo - valorFinal;
+  if (!aprovado || valorAvaliado <= 0) {
+    resultado.innerHTML = `
+      <div class="result reprovado">
+        <h3>😞 Upgrade não aprovado</h3>
+        <p>Infelizmente este aparelho não atende aos critérios para ser utilizado como entrada.</p>
+      </div>
+    `;
+    return;
+  }
 
-      let resultado = document.getElementById("resultado");
-      resultado.style.display = "block";
+  let diferenca = valorNovo - valorAvaliado;
 
-      if (valorFinal >= 1000) {
-        resultado.className = "resultado aprovado";
-        resultado.innerHTML = `
-          🎉 <b>Upgrade aprovado!</b><br><br>
-          💰 Valor avaliado: <b>R$ ${valorFinal}</b><br>
-          🔄 Diferença a pagar: <b>R$ ${diferenca}</b>
-        `;
-      } else {
-        resultado.className = "resultado reprovado";
-        resultado.innerHTML = `
-          😞 <b>Upgrade não aprovado</b><br><br>
-          Valor avaliado muito baixo para entrada.
-        `;
-      }
-    }
-  </script>
+  resultado.innerHTML = `
+    <div class="result aprovado">
+      <h3>🎉 Upgrade aprovado!</h3>
+      <pre>
+Olá, venho com uma boa notícia! 😊
+Seu aparelho foi aceito como parte do valor para adquirir seu novo iPhone conosco. ✅
+
+OFERTA UPGRADE 🔄
+
+DE ENTRADA: ${modeloEntrada}
+(valor avaliado: R$ ${valorAvaliado.toLocaleString("pt-BR")})
+
+DESEJA ADQUIRIR: ${modeloDesejado}
+
+DIFERENÇA DE VALOR: R$ ${diferenca.toLocaleString("pt-BR")}
+      </pre>
+    </div>
+  `;
+}
+
+// atalhos
+const modeloEntradaInput = document.getElementById("modeloEntrada");
+const valorFornecedorInput = document.getElementById("valorFornecedor");
+const bateriaInput = document.getElementById("bateria");
+const notaInput = document.getElementById("nota");
+const reparoInput = document.getElementById("reparo");
+const caixaInput = document.getElementById("caixa");
+const corInput = document.getElementById("cor");
+const desvalInput = document.getElementById("desval");
+const modeloDesejadoInput = document.getElementById("modeloDesejado");
+const valorNovoInput = document.getElementById("valorNovo");
+</script>
 
 </body>
 </html>
