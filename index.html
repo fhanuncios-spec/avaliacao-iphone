@@ -37,12 +37,14 @@ input, select, button {
   border-radius: 14px;
   border: 1px solid #d1d1d6;
   font-size: 16px;
+  box-sizing: border-box;
 }
 button {
   background: #000;
   color: #fff;
   margin-top: 18px;
   font-weight: 600;
+  cursor: pointer;
 }
 .result {
   margin-top: 22px;
@@ -71,6 +73,27 @@ pre {
 .copy {
   background: #007aff;
 }
+
+/* Campo com botão ao lado */
+.input-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.input-group input {
+  flex: 1;
+}
+.toggle-olho {
+  width: 50px;
+  border-radius: 14px;
+  border: 1px solid #d1d1d6;
+  background: #f2f2f7;
+  font-size: 18px;
+  cursor: pointer;
+}
+.toggle-olho:hover {
+  opacity: 0.8;
+}
 </style>
 </head>
 
@@ -79,12 +102,16 @@ pre {
 <div class="container">
   
 <h1>📱 Avaliação de iPhone</h1>
-<img src="logo.png" style="max-width:120px;margin:auto;display:block">
+<img src="logofinal.png" style="max-width:120px;margin:auto;display:block">
+
 <label>Modelo de Entrada</label>
 <input id="modeloEntrada" placeholder="iPhone 15 Pro Max - 256GB - Preto">
 
-<label>Valor do Fornecedor (R$)</label>
-<input id="valorFornecedor" type="number">
+<label>Revenda (R$)</label>
+<div class="input-group">
+  <input id="valorFornecedor" type="password" inputmode="numeric" autocomplete="off">
+  <button type="button" class="toggle-olho" onclick="toggleFornecedor()">👁</button>
+</div>
 
 <label>Saúde da bateria (%)</label>
 <input id="bateria" type="number">
@@ -127,7 +154,7 @@ pre {
   <option>Defeito</option>
 </select>
 
-<label>Aplicar desvalorização geral de R$200?</label>
+<label>Aplicar?</label>
 <select id="desval">
   <option>Sim</option>
   <option>Não</option>
@@ -145,6 +172,19 @@ pre {
 </div>
 
 <script>
+function toggleFornecedor() {
+  const input = document.getElementById("valorFornecedor");
+  const btn = document.querySelector(".toggle-olho");
+
+  if (input.type === "password") {
+    input.type = "text";
+    btn.textContent = "🙈";
+  } else {
+    input.type = "password";
+    btn.textContent = "👁";
+  }
+}
+
 function avaliar() {
   let valorFornecedor = Number(valorFornecedorInput.value);
   let bateria = Number(bateriaInput.value);
@@ -197,8 +237,9 @@ DE ENTRADA: ${modeloEntrada}
 (valor avaliado: R$ ${valorAvaliado.toLocaleString("pt-BR")})
 
 DESEJA ADQUIRIR: ${modeloDesejado}
+(valor do desejado: R$ ${valorNovo.toLocaleString("pt-BR")})
 
-DIFERENÇA DE VALOR: R$ ${diferenca.toLocaleString("pt-BR")}`;
+DIFERENÇA / ENTRADA: R$ ${diferenca.toLocaleString("pt-BR")}`;
 
   resultado.innerHTML = `
     <div class="result aprovado">
