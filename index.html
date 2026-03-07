@@ -73,8 +73,6 @@ pre {
 .copy {
   background: #007aff;
 }
-
-/* Campo com botão ao lado */
 .input-group {
   display: flex;
   gap: 8px;
@@ -100,74 +98,77 @@ pre {
 <body>
 
 <div class="container">
-  
-<h1>📱 Avaliação de iPhone</h1>
+  <h1>📱 Avaliação de iPhone</h1>
 
-<label>Modelo de Entrada</label>
-<input id="modeloEntrada" placeholder="iPhone 15 Pro Max - 256GB - Preto">
+  <label>Modelo de Entrada</label>
+  <input id="modeloEntrada" placeholder="iPhone 15 Pro Max - 256GB - Preto">
 
-<label>Revenda (R$)</label>
-<div class="input-group">
-  <input id="valorFornecedor" type="password" inputmode="numeric" autocomplete="off">
-  <button type="button" class="toggle-olho" onclick="toggleFornecedor()">👁</button>
-</div>
+  <label>Revenda (R$)</label>
+  <div class="input-group">
+    <input id="valorFornecedor" type="password" inputmode="numeric" autocomplete="off">
+    <button type="button" class="toggle-olho" onclick="toggleFornecedor()">👁</button>
+  </div>
 
-<label>Saúde da bateria (%)</label>
-<input id="bateria" type="number">
+  <label>Saúde da bateria (%)</label>
+  <input id="bateria" type="number">
 
-<label>Possui Nota Fiscal?</label>
-<select id="nota">
-  <option>Sim</option>
-  <option>Não</option>
-</select>
+  <label>Possui Nota Fiscal?</label>
+  <select id="nota">
+    <option>Sim</option>
+    <option>Não</option>
+  </select>
 
-<label>Já teve reparo?</label>
-<select id="reparo">
-  <option>Não</option>
-  <option>Sim</option>
-</select>
+  <label>Já teve reparo?</label>
+  <select id="reparo">
+    <option>Não</option>
+    <option>Sim</option>
+  </select>
 
-<label>Possui caixa?</label>
-<select id="caixa">
-  <option>Sim</option>
-  <option>Não</option>
-</select>
+  <label>Possui caixa?</label>
+  <select id="caixa">
+    <option>Sim</option>
+    <option>Não</option>
+  </select>
 
-<label>Cor</label>
-<select id="cor">
-  <option>Preto</option>
-  <option>Branco</option>
-  <option>Azul</option>
-  <option>Verde</option>
-  <option>Lilás</option>
-  <option>Amarelo</option>
-  <option>Vermelho</option>
-  <option>Rosa</option>
-</select>
+  <label>Cor</label>
+  <select id="cor">
+    <option>Preto</option>
+    <option>Branco</option>
+    <option>Azul</option>
+    <option>Verde</option>
+    <option>Lilás</option>
+    <option>Amarelo</option>
+    <option>Vermelho</option>
+    <option>Rosa</option>
+  </select>
 
-<label>Avarias do aparelho</label>
-<select id="avaria">
-  <option>Sem avarias</option>
-  <option>Arranhado</option>
-  <option>Trincado</option>
-  <option>Defeito</option>
-</select>
+  <label>Avarias do aparelho</label>
+  <select id="avaria">
+    <option>Sem avarias</option>
+    <option>Arranhado</option>
+    <option>Trincado</option>
+    <option>Defeito</option>
+    <option>Reparado</option>
+  </select>
 
-<label>Aplicar?</label>
-<select id="desval">
-  <option>Sim</option>
-  <option>Não</option>
-</select>
+  <label>Valor extra para retirar da avaliação por avaria (R$)</label>
+  <input id="valorAvaria" type="number" placeholder="Ex: 300" value="0">
 
-<label>Modelo desejado</label>
-<input id="modeloDesejado" placeholder="iPhone 16 Pro Max - 256GB - Lacrado">
+  <label>Aplicar?</label>
+  <select id="desval">
+    <option>Sim</option>
+    <option>Não</option>
+  </select>
 
-<label>Valor do iPhone desejado (R$)</label>
-<input id="valorNovo" type="number">
+  <label>Modelo desejado</label>
+  <input id="modeloDesejado" placeholder="iPhone 16 Pro Max - 256GB - Lacrado">
 
-<button onclick="avaliar()">Avaliar Upgrade</button>
+  <label>Valor do iPhone desejado (R$)</label>
+  <input id="valorNovo" type="number">
 
-<div id="resultado"></div>
+  <button onclick="avaliar()">Avaliar Upgrade</button>
+
+  <div id="resultado"></div>
 </div>
 
 <script>
@@ -185,35 +186,46 @@ function toggleFornecedor() {
 }
 
 function avaliar() {
-  let valorFornecedor = Number(valorFornecedorInput.value);
-  let bateria = Number(bateriaInput.value);
-  let nota = notaInput.value;
-  let reparo = reparoInput.value;
-  let caixa = caixaInput.value;
-  let cor = corInput.value;
-  let desval = desvalInput.value;
-  let avaria = avariaInput.value;
+  const valorFornecedor = Number(valorFornecedorInput.value) || 0;
+  const bateria = Number(bateriaInput.value) || 0;
+  const nota = notaInput.value;
+  const reparo = reparoInput.value;
+  const caixa = caixaInput.value;
+  const cor = corInput.value;
+  const desval = desvalInput.value;
+  const avaria = avariaInput.value;
+  const valorAvaria = Number(valorAvariaInput.value) || 0;
 
-  let modeloEntrada = modeloEntradaInput.value;
-  let modeloDesejado = modeloDesejadoInput.value;
-  let valorNovo = Number(valorNovoInput.value);
+  const modeloEntrada = modeloEntradaInput.value;
+  const modeloDesejado = modeloDesejadoInput.value;
+  const valorNovo = Number(valorNovoInput.value) || 0;
 
   let valorAvaliado = valorFornecedor;
   let aprovado = true;
 
+  // Mantido como estava: sem nota ou com reparo reprova
   if (nota === "Não" || reparo === "Sim") aprovado = false;
-  if (avaria === "Trincado" || avaria === "Defeito") aprovado = false;
 
+  // Avaria NÃO reprova mais nenhuma opção
   if (aprovado) {
-    if (bateria < 86) valorAvaliado -= 300;
-    else if (bateria <= 89) valorAvaliado -= 150;
+    if (bateria < 86) {
+      valorAvaliado -= 300;
+    } else if (bateria <= 89) {
+      valorAvaliado -= 150;
+    }
 
     if (caixa === "Não") valorAvaliado -= 100;
-    if (["Lilás","Amarelo","Vermelho","Rosa"].includes(cor)) valorAvaliado -= 100;
+    if (["Lilás", "Amarelo", "Vermelho", "Rosa"].includes(cor)) valorAvaliado -= 100;
     if (desval === "Sim") valorAvaliado -= 200;
+
+    // Aplica desconto extra manual em qualquer opção de avaria,
+    // desde que tenha valor preenchido maior que zero
+    if (valorAvaria > 0) {
+      valorAvaliado -= valorAvaria;
+    }
   }
 
-  let resultado = document.getElementById("resultado");
+  const resultado = document.getElementById("resultado");
 
   if (!aprovado || valorAvaliado <= 0) {
     resultado.innerHTML = `
@@ -225,9 +237,9 @@ function avaliar() {
     return;
   }
 
-  let diferenca = valorNovo - valorAvaliado;
+  const diferenca = valorNovo - valorAvaliado;
 
-  let mensagem = `Olá, venho com uma boa notícia! 😊
+  const mensagem = `Olá, venho com uma boa notícia! 😊
 Seu aparelho foi aceito como parte do valor para adquirir seu novo iPhone conosco. ✅
 
 OFERTA UPGRADE 🔄
@@ -235,10 +247,13 @@ OFERTA UPGRADE 🔄
 DE ENTRADA: ${modeloEntrada}
 (valor avaliado: R$ ${valorAvaliado.toLocaleString("pt-BR")})
 
+AVARIA INFORMADA: ${avaria}
+${valorAvaria > 0 ? `(desconto adicional por avaria: R$ ${valorAvaria.toLocaleString("pt-BR")})` : ""}
+
 DESEJA ADQUIRIR: ${modeloDesejado}
 (valor do desejado: R$ ${valorNovo.toLocaleString("pt-BR")})
 
-DIFERENÇA / ENTRADA: R$ ${diferenca.toLocaleString("pt-BR")})
+DIFERENÇA / ENTRADA: R$ ${diferenca.toLocaleString("pt-BR")}
 -OFERTA VÁLIDA POR 1 DIA-`;
 
   resultado.innerHTML = `
@@ -272,8 +287,9 @@ const notaInput = document.getElementById("nota");
 const reparoInput = document.getElementById("reparo");
 const caixaInput = document.getElementById("caixa");
 const corInput = document.getElementById("cor");
-const desvalInput = document.getElementById("desval");
 const avariaInput = document.getElementById("avaria");
+const valorAvariaInput = document.getElementById("valorAvaria");
+const desvalInput = document.getElementById("desval");
 const modeloDesejadoInput = document.getElementById("modeloDesejado");
 const valorNovoInput = document.getElementById("valorNovo");
 </script>
