@@ -1,298 +1,2486 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Avaliação de iPhone – Upgrade</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Avaliação de iPhone – Upgrade</title>
 
-<style>
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Arial, sans-serif;
-  background: #f2f2f7;
-  padding: 20px;
-}
-.container {
-  background: #ffffff;
-  border-radius: 22px;
-  padding: 22px;
-  max-width: 420px;
-  margin: auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
-}
-h1 {
-  text-align: center;
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-label {
-  margin-top: 14px;
-  display: block;
-  font-weight: 600;
-  font-size: 14px;
-}
-input, select, button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 6px;
-  border-radius: 14px;
-  border: 1px solid #d1d1d6;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-button {
-  background: #000;
-  color: #fff;
-  margin-top: 18px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.result {
-  margin-top: 22px;
-  padding: 18px;
-  border-radius: 18px;
-}
-.aprovado {
-  background: #e6f4ea;
-  color: #0f5132;
-}
-.reprovado {
-  background: #fce8e6;
-  color: #842029;
-}
-pre {
-  white-space: pre-wrap;
-  font-size: 15px;
-  margin-top: 10px;
-}
-.actions button {
-  margin-top: 10px;
-}
-.whatsapp {
-  background: #25D366;
-}
-.copy {
-  background: #007aff;
-}
-.input-group {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.input-group input {
-  flex: 1;
-}
-.toggle-olho {
-  width: 50px;
-  border-radius: 14px;
-  border: 1px solid #d1d1d6;
-  background: #f2f2f7;
-  font-size: 18px;
-  cursor: pointer;
-}
-.toggle-olho:hover {
-  opacity: 0.8;
-}
-</style>
+  <style>
+    :root{
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #dbe3ee;
+      --shadow: 0 18px 45px rgba(15, 23, 42, .08);
+
+      --blue: #0a84ff;
+      --blue-soft: #eaf4ff;
+
+      --green: #16a34a;
+      --green-soft: #edfdf3;
+
+      --red: #dc2626;
+      --red-soft: #fff1f1;
+
+      --yellow: #d97706;
+      --yellow-soft: #fff7ea;
+
+      --purple: #7c3aed;
+      --purple-soft: #f4ebff;
+
+      --teal: #0f766e;
+      --teal-soft: #ebfffc;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 18px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(10,132,255,.10), transparent 34%),
+        radial-gradient(circle at top right, rgba(124,58,237,.08), transparent 28%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .main-card {
+      background: var(--card);
+      border-radius: 28px;
+      padding: 22px;
+      border: 1px solid rgba(219,227,238,.85);
+      box-shadow: var(--shadow);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.05;
+    }
+
+    .header p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .badge {
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #111827, #374151);
+      color: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 16px;
+    }
+
+    .full { grid-column: 1 / -1; }
+
+    .section {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .blue { background: linear-gradient(180deg, #fff 0%, var(--blue-soft) 100%); border-color: #cfe1ff; }
+    .green { background: linear-gradient(180deg, #fff 0%, var(--green-soft) 100%); border-color: #cbefd7; }
+    .yellow { background: linear-gradient(180deg, #fff 0%, var(--yellow-soft) 100%); border-color: #f5dcac; }
+    .purple { background: linear-gradient(180deg, #fff 0%, var(--purple-soft) 100%); border-color: #e2c8ff; }
+    .red { background: linear-gradient(180deg, #fff 0%, var(--red-soft) 100%); border-color: #f4c8c8; }
+    .teal { background: linear-gradient(180deg, #fff 0%, var(--teal-soft) 100%); border-color: #c6efe9; }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 17px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-desc {
+      margin: -2px 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    input, select, textarea, button {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #d3dce8;
+      padding: 14px 15px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: .2s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(10,132,255,.12);
+    }
+
+    button {
+      border: none;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(15,23,42,.08);
+    }
+
+    button:hover { transform: translateY(-1px); }
+
+    .btn-dark { background: linear-gradient(135deg, #111827, #374151); color: #fff; }
+    .btn-blue { background: linear-gradient(135deg, #0a84ff, #0066d6); color: #fff; }
+    .btn-green { background: linear-gradient(135deg, #25d366, #169c4c); color: #fff; }
+    .btn-purple { background: linear-gradient(135deg, #7c3aed, #5b21b6); color: #fff; }
+    .btn-orange { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; }
+    .btn-gray { background: linear-gradient(135deg, #f3f4f6, #e5e7eb); color: #111827; }
+
+    .actions-2, .actions-3 {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .actions-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .actions-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+
+    .mini-box {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 15px;
+      border: 1px dashed rgba(17,24,39,.14);
+      background: rgba(255,255,255,.78);
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.5;
+    }
+
+    .code-place {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(17,24,39,.96);
+      color: #e5e7eb;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.55;
+      overflow: auto;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(17,24,39,.08);
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    .stat small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .stat strong { font-size: 20px; }
+
+    .found-box {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px dashed rgba(17,24,39,.15);
+      background: rgba(255,255,255,.82);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .options-list {
+      margin-top: 12px;
+      display: grid;
+      gap: 10px;
+      max-height: 420px;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .option-card {
+      background: rgba(255,255,255,.9);
+      border: 1px solid rgba(17,24,39,.08);
+      border-radius: 18px;
+      padding: 14px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .option-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .option-model {
+      font-weight: 900;
+      font-size: 15px;
+      line-height: 1.25;
+    }
+
+    .option-meta {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .option-price-wrap {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .option-price-old {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+
+    .option-price {
+      font-size: 22px;
+      font-weight: 900;
+      color: #111827;
+      white-space: nowrap;
+    }
+
+    .option-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .option-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .option-actions button {
+      width: auto;
+      padding: 10px 12px;
+      border-radius: 12px;
+      box-shadow: none;
+      font-size: 13px;
+    }
+
+    .selected-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: #ecfdf3;
+      color: #146534;
+      font-weight: 800;
+      font-size: 13px;
+      border: 1px solid #b7ebc9;
+    }
+
+    .result-box {
+      border-radius: 24px;
+      padding: 18px;
+      border: 1px solid transparent;
+      box-shadow: 0 14px 34px rgba(15,23,42,.08);
+      background: #fff;
+    }
+
+    .approved {
+      background: linear-gradient(180deg, #fff 0%, #eefef4 100%);
+      border-color: #cbeed9;
+    }
+
+    .reproved {
+      background: linear-gradient(180deg, #fff 0%, #fff2f2 100%);
+      border-color: #f2caca;
+    }
+
+    .result-title {
+      margin: 0 0 14px;
+      font-size: 23px;
+      font-weight: 900;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .summary-card {
+      background: rgba(255,255,255,.92);
+      border-radius: 18px;
+      border: 1px solid rgba(17,24,39,.08);
+      padding: 14px;
+    }
+
+    .summary-label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 6px;
+      letter-spacing: .4px;
+    }
+
+    .summary-value {
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 1.18;
+      word-break: break-word;
+    }
+
+    .discounts {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .discount-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border-radius: 16px;
+      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(17,24,39,.08);
+      padding: 12px 14px;
+    }
+
+    .discount-left {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .emoji-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+    }
+
+    .emoji-green { background: #eafaf1; }
+    .emoji-blue { background: #eaf3ff; }
+    .emoji-yellow { background: #fff6e7; }
+    .emoji-purple { background: #f4ebff; }
+    .emoji-red { background: #fff0f0; }
+
+    .discount-name {
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .discount-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .discount-value {
+      font-size: 15px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .discount-value.neg { color: #dc2626; }
+    .discount-value.zero { color: #6b7280; }
+
+    .message-box {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(17,24,39,.08);
+    }
+
+    .message-box h4 {
+      margin: 0 0 10px;
+      font-size: 15px;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.55;
+      font-family: inherit;
+      color: #1f2937;
+    }
+
+    .client-card-wrap {
+      margin-top: 16px;
+    }
+
+    .client-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 22px;
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,.35), transparent 28%),
+        linear-gradient(135deg, #0f172a 0%, #12284a 30%, #0a84ff 100%);
+      color: #fff;
+      box-shadow: 0 18px 45px rgba(15,23,42,.16);
+    }
+
+    .client-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 180px;
+      height: 180px;
+      background: rgba(255,255,255,.08);
+      border-radius: 50%;
+    }
+
+    .client-card-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .client-brand {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      opacity: .88;
+    }
+
+    .client-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      font-weight: 900;
+      font-size: 12px;
+      white-space: nowrap;
+      backdrop-filter: blur(10px);
+    }
+
+    .client-title {
+      margin: 16px 0 8px;
+      font-size: 28px;
+      line-height: 1.08;
+      font-weight: 900;
+      position: relative;
+      z-index: 1;
+    }
+
+    .client-subtitle {
+      color: rgba(255,255,255,.88);
+      font-size: 14px;
+      line-height: 1.45;
+      max-width: 680px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .client-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .client-highlight {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 18px;
+      padding: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .client-highlight small {
+      display: block;
+      color: rgba(255,255,255,.76);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .client-highlight strong {
+      font-size: 22px;
+      line-height: 1.1;
+      display: block;
+    }
+
+    .client-models {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+      margin-top: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .client-model-box {
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      padding: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .client-model-box small {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.76);
+      margin-bottom: 7px;
+    }
+
+    .client-model-box strong {
+      font-size: 17px;
+      line-height: 1.22;
+      display: block;
+    }
+
+    .client-triggers {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pill {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.18);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .client-bottom {
+      margin-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .client-copy {
+      color: rgba(255,255,255,.92);
+      font-size: 13px;
+      line-height: 1.45;
+      max-width: 72%;
+    }
+
+    .client-cta {
+      text-align: right;
+      font-size: 13px;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .client-actions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .footer-note {
+      margin-top: 8px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .grid, .summary-grid, .actions-2, .actions-3, .stats, .client-highlight-grid, .client-models, .client-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .client-bottom {
+        flex-direction: column;
+        align-items: start;
+      }
+
+      .client-copy { max-width: 100%; }
+    }
+
+    @media (max-width: 720px) {
+      body { padding: 12px; }
+      .main-card { padding: 16px; border-radius: 22px; }
+      .header h1 { font-size: 24px; }
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .main-card { border: none; box-shadow: none; }
+      .no-print { display: none !important; }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="container">
+    <div class="main-card">
+      <div class="header">
+        <div>
+          <h1>📱 Avaliação de iPhone</h1>
+          <p>Busca exata por modelo e tabelas de fornecedores embutidas direto no código, com desconto automático de R$ 500,00 na revenda.</p>
+        </div>
+        <div class="badge">✨ Atualizado</div>
+      </div>
 
-<div class="container">
-  <h1>📱 Avaliação de iPhone</h1>
+      <div class="grid">
+        <div class="section blue">
+          <h2>📦 Aparelho de entrada</h2>
 
-  <label>Modelo de Entrada</label>
-  <input id="modeloEntrada" placeholder="iPhone 15 Pro Max - 256GB - Preto">
+          <label for="modeloEntrada">Modelo de Entrada</label>
+          <input id="modeloEntrada" placeholder="Ex: iPhone 14 ou iPhone 14 Pro 256GB" />
 
-  <label>Revenda (R$)</label>
-  <div class="input-group">
-    <input id="valorFornecedor" type="password" inputmode="numeric" autocomplete="off">
-    <button type="button" class="toggle-olho" onclick="toggleFornecedor()">👁</button>
+          <label for="valorFornecedor">Revenda (R$)</label>
+          <div style="display:flex; gap:8px;">
+            <input id="valorFornecedor" type="password" inputmode="decimal" autocomplete="off" placeholder="Ex: 4049" />
+            <button type="button" class="toggle-olho" style="width:58px;min-width:58px;background:#fff;cursor:pointer;font-size:20px;" onclick="toggleFornecedor()">👁</button>
+          </div>
+
+          <div id="selectedOptionBadge" style="display:none;"></div>
+          <div id="fornecedorEncontrado" class="found-box" style="display:none;"></div>
+
+          <div id="opcoesEncontradasWrap" style="display:none;">
+            <label style="margin-top:14px;">🏪 Opções encontradas para escolher</label>
+            <div id="opcoesEncontradas" class="options-list"></div>
+          </div>
+        </div>
+
+        <div class="section purple">
+          <h2>🏷️ Tabelas de fornecedores no código</h2>
+          <p class="section-desc">
+            Agora as tabelas ficam <strong>direto no JavaScript</strong>. Você só precisa atualizar o bloco
+            <strong>TABELAS_FORNECEDORES_RAW</strong> dentro do código todos os dias.
+          </p>
+
+          <div class="actions-2">
+            <button type="button" class="btn-purple" onclick="analisarTabelaFornecedores()">🔎 Procurar opções</button>
+            <button type="button" class="btn-gray" onclick="recarregarBaseFornecedores()">🔄 Recarregar base do código</button>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <small>Registros</small>
+              <strong id="totalRegistros">0</strong>
+            </div>
+            <div class="stat">
+              <small>Fornecedores</small>
+              <strong id="totalFornecedores">0</strong>
+            </div>
+            <div class="stat">
+              <small>Compatíveis</small>
+              <strong id="totalCompativeis">0</strong>
+            </div>
+            <div class="stat">
+              <small>Menor revenda</small>
+              <strong id="menorValor">R$ 0,00</strong>
+            </div>
+          </div>
+
+          <div class="mini-box">
+            <strong>Busca exata aplicada:</strong><br>
+            se você pesquisar <strong>iPhone 14</strong>, vão aparecer apenas os <strong>iPhones 14</strong> da tabela.<br>
+            Não vai misturar com <strong>14 Plus</strong>, <strong>14 Pro</strong> ou <strong>14 Pro Max</strong>.<br><br>
+            Se pesquisar <strong>iPhone 14 Pro</strong>, vai mostrar somente <strong>14 Pro</strong>.<br>
+            Se informar capacidade, como <strong>256GB</strong>, o filtro também respeita isso.
+          </div>
+
+          <div class="code-place">PROCURE NO JAVASCRIPT POR:
+const TABELAS_FORNECEDORES_RAW = `...`;
+
+É NESSE BLOCO QUE VOCÊ VAI COLAR AS TABELAS DIARIAMENTE.</div>
+        </div>
+
+        <div class="section green">
+          <h2>🔋 Estado e procedência</h2>
+
+          <label for="bateria">Saúde da bateria (%)</label>
+          <input id="bateria" type="number" placeholder="Ex: 88" />
+
+          <label for="nota">🧾 Possui nota fiscal?</label>
+          <select id="nota">
+            <option>Sim</option>
+            <option>Não</option>
+          </select>
+
+          <label for="reparo">🛠️ Já teve reparo?</label>
+          <select id="reparo">
+            <option>Não</option>
+            <option>Sim</option>
+          </select>
+
+          <label for="caixa">📦 Possui caixa?</label>
+          <select id="caixa">
+            <option>Sim</option>
+            <option>Não</option>
+          </select>
+        </div>
+
+        <div class="section yellow">
+          <h2>🎨 Aparência e ajustes</h2>
+
+          <label for="cor">🌈 Cor</label>
+          <select id="cor">
+            <option>Preto</option>
+            <option>Branco</option>
+            <option>Azul</option>
+            <option>Verde</option>
+            <option>Lilás</option>
+            <option>Roxo</option>
+            <option>Natural</option>
+            <option>Gold</option>
+            <option>Grafite</option>
+            <option>Desert</option>
+            <option>Amarelo</option>
+            <option>Vermelho</option>
+            <option>Rosa</option>
+            <option>Laranja</option>
+          </select>
+
+          <label for="avaria">🧩 Avarias do aparelho</label>
+          <select id="avaria">
+            <option>Sem avarias</option>
+            <option>Arranhado</option>
+            <option>Trincado</option>
+            <option>Defeito</option>
+            <option>Reparado</option>
+          </select>
+
+          <label for="valorAvaria">💸 Valor extra de desconto por avaria (R$)</label>
+          <input id="valorAvaria" type="number" value="0" placeholder="Ex: 300" />
+
+          <label for="desval">📉 Aplicar desvalorização padrão?</label>
+          <select id="desval">
+            <option>Sim</option>
+            <option>Não</option>
+          </select>
+        </div>
+
+        <div class="section teal">
+          <h2>🛍️ Modelo desejado</h2>
+
+          <label for="modeloDesejado">Modelo desejado</label>
+          <input id="modeloDesejado" placeholder="Ex: iPhone 16 Pro Max 256GB" />
+
+          <label for="valorNovo">💰 Valor do iPhone desejado (R$)</label>
+          <input id="valorNovo" type="number" placeholder="Ex: 8990" />
+        </div>
+
+        <div class="section red">
+          <h2>⚙️ Ações</h2>
+          <p class="section-desc">
+            O restante do sistema foi mantido. Agora a busca respeita exatamente o modelo digitado e a base de fornecedores fica fixa no código.
+          </p>
+
+          <div class="actions-3">
+            <button type="button" class="btn-dark" onclick="avaliar()">✅ Avaliar Upgrade</button>
+            <button type="button" class="btn-orange" onclick="exportarPDF()">📄 Exportar PDF</button>
+            <button type="button" class="btn-gray" onclick="limparTudo()">♻️ Limpar tudo</button>
+          </div>
+
+          <div class="mini-box">
+            <strong>Importante:</strong><br>
+            o campo de busca não usa mais compatibilidade solta para misturar linhas parecidas.<br>
+            Ele separa <strong>modelo base</strong>, <strong>Plus</strong>, <strong>Pro</strong> e <strong>Pro Max</strong> corretamente.
+          </div>
+        </div>
+
+        <div class="full" id="resultado"></div>
+      </div>
+
+      <div class="footer-note no-print">Sistema pronto para usar direto no navegador.</div>
+    </div>
   </div>
 
-  <label>Saúde da bateria (%)</label>
-  <input id="bateria" type="number">
+  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-  <label>Possui Nota Fiscal?</label>
-  <select id="nota">
-    <option>Sim</option>
-    <option>Não</option>
-  </select>
+  <script>
+    const AJUSTE_REVENDA_FORNECEDOR = 500;
+    const ORDEM_FORNECEDORES = {
+      "MANGA": 1,
+      "IMPORTECH": 2,
+      "SENA": 3,
+      "QUALITY": 4
+    };
 
-  <label>Já teve reparo?</label>
-  <select id="reparo">
-    <option>Não</option>
-    <option>Sim</option>
-  </select>
+    /*
+      =========================================================================================
+      ATUALIZE AQUI TODOS OS DIAS:
+      SUBSTITUA O CONTEÚDO ENTRE AS CRASES PELAS NOVAS TABELAS DOS FORNECEDORES
+      =========================================================================================
+    */
+    const TABELAS_FORNECEDORES_RAW = `
+LISTA IPHONE SEMINOVOS MANGA📱
 
-  <label>Possui caixa?</label>
-  <select id="caixa">
-    <option>Sim</option>
-    <option>Não</option>
-  </select>
+Aqui está a sua lista de **IPHONE VITRINE** atualizada para o **Consultório**, com o acréscimo de **R$ 500,00** em todos os valores, remoção dos itens **AB** e formatação de um embaixo do outro:
 
-  <label>Cor</label>
-  <select id="cor">
-    <option>Preto</option>
-    <option>Branco</option>
-    <option>Azul</option>
-    <option>Verde</option>
-    <option>Lilás</option>
-    <option>Amarelo</option>
-    <option>Vermelho</option>
-    <option>Rosa</option>
-  </select>
+**IPHONE VITRINE**
 
-  <label>Avarias do aparelho</label>
-  <select id="avaria">
-    <option>Sem avarias</option>
-    <option>Arranhado</option>
-    <option>Trincado</option>
-    <option>Defeito</option>
-    <option>Reparado</option>
-  </select>
+📍 iPhone 11-128gb grade A branco e preto ( bateria 💯) R$ 1.850,00
 
-  <label>Valor extra para retirar da avaliação por avaria (R$)</label>
-  <input id="valorAvaria" type="number" placeholder="Ex: 300" value="0">
+📍 iPhone 12 Pro - grade A 256gb azul / gold e preto ( bateria 90 a 100) R$ 2.600,00
 
-  <label>Aplicar?</label>
-  <select id="desval">
-    <option>Sim</option>
-    <option>Não</option>
-  </select>
+📍 iPhone 12 Pro Max - grade A 128gb azul ( bateria 90 a 100) R$ 3.000,00
 
-  <label>Modelo desejado</label>
-  <input id="modeloDesejado" placeholder="iPhone 16 Pro Max - 256GB - Lacrado">
+📍 iPhone 13-128gb grade A branco / preto e rosa ( bateria 90 a 💯) R$ 2.500,00
 
-  <label>Valor do iPhone desejado (R$)</label>
-  <input id="valorNovo" type="number">
+📍 iPhone 13 Pro - grade A 128gb preto e verde ( bateria 90 a 100) R$ 2.950,00
 
-  <button onclick="avaliar()">Avaliar Upgrade</button>
+📍 iPhone 13 Pro - grade A 256gb silver e gold ( bateria 90 a 100) R$ 3.150,00
 
-  <div id="resultado"></div>
-</div>
+📍 iPhone 13 Pro Max - grade A 128gb preto / silver / gold / azul e verde ( bateria 90 a 100) R$ 3.350,00
 
-<script>
-function toggleFornecedor() {
-  const input = document.getElementById("valorFornecedor");
-  const btn = document.querySelector(".toggle-olho");
+📍 iPhone 13 Pro Max - grade A 1TERA azul ( bateria 90 a 100) R$ 3.600,00
 
-  if (input.type === "password") {
-    input.type = "text";
-    btn.textContent = "🙈";
-  } else {
-    input.type = "password";
-    btn.textContent = "👁";
-  }
-}
+📍 iPhone 14-128gb grade A lilás / preto ( bateria 90 a 💯) R$ 2.700,00
 
-function avaliar() {
-  const valorFornecedor = Number(valorFornecedorInput.value) || 0;
-  const bateria = Number(bateriaInput.value) || 0;
-  const nota = notaInput.value;
-  const reparo = reparoInput.value;
-  const caixa = caixaInput.value;
-  const cor = corInput.value;
-  const desval = desvalInput.value;
-  const avaria = avariaInput.value;
-  const valorAvaria = Number(valorAvariaInput.value) || 0;
+📍 iPhone 14 Plus-128gb grade A preto ( bateria 90 a 💯) R$ 2.800,00
 
-  const modeloEntrada = modeloEntradaInput.value;
-  const modeloDesejado = modeloDesejadoInput.value;
-  const valorNovo = Number(valorNovoInput.value) || 0;
+📍 iPhone 14 pro - 128gb grade A preto e roxo ( bateria 90 a 💯 ) R$ 3.350,00
 
-  let valorAvaliado = valorFornecedor;
-  let aprovado = true;
+📍 iPhone 14 pro - 256gb grade A roxo ( bateria 90 a 💯 ) R$ 3.450,00
 
-  // Mantido como estava: sem nota ou com reparo reprova
-  if (nota === "Não" || reparo === "Sim") aprovado = false;
+📍 iPhone 15-128gb grade A azul / preto e rosa ( bateria 90 a 💯) R$ 3.400,00
 
-  // Avaria NÃO reprova mais nenhuma opção
-  if (aprovado) {
-    if (bateria < 86) {
-      valorAvaliado -= 300;
-    } else if (bateria <= 89) {
-      valorAvaliado -= 150;
+📍 iPhone 15-256gb grade A preto ( bateria 90 a 💯) R$ 3.500,00
+
+📍 iPhone 15 Plus-256gb grade A preto e rosa ( bateria 90 a 💯) R$ 3.700,00
+
+📍 iPhone 15 pro - 256 grade A azul e preto . ( bateria 90 a 💯 ) R$ 4.100,00
+
+📍 iPhone 15 pro - 256 grade A branco . ( bateria 90 a 💯 ) R$ 4.200,00
+
+📍 iPhone 15 pro Max - 256gb grade A azul / preto / natural e branco ( bateria 90 a 💯 ) R$ 4.600,00
+
+📍 iPhone 16-128gb grade A branco e rosa ( bateria 90 a 💯) R$ 4.100,00
+
+📍 iPhone 16 pro - 128 grade A desert e preto. ( garantia Apple bateria 90 a 💯 ) R$ 5.200,00
+
+📍 iPhone 16 pro - 256 grade A desert . ( bateria 90 a 💯 ) R$ 5.400,00
+
+📍 iPhone 16 pro Max - 256 grade A desert / natural e branco. ( bateria 90 a 💯 ) R$ 5.800,00
+
+📍 iPhone 16 pro Max - 512gb grade A desert / natural . ( bateria 90 a 💯 ) R$ 6.000,00
+
+LISTA IMPORTTECH:
+
+Aqui está a sua lista atualizada para o **Consultório**, com o acréscimo de **R$ 500,00** em cada valor e a remoção automática de todos os modelos de grade **AB**, conforme o combinado:
+
+📲 12 64gb A — r$ 1.950,00
+💚🖤
+
+📲 12 128gb A — r$ 2.050,00
+💜
+
+📲 12 256gb A — r$ 2.100,00
+💙🤍
+
+📲 12 pro 128gb A — r$ 2.400,00
+🤍🧡
+
+📲 12pro 256gb A — r$ 2.550,00
+🩶💙
+
+📲 12 pro 512gb A — r$ 2.650,00
+💙
+
+📲 12 pro max 256gb A — r$ 2.950,00
+💙
+
+📲 12 pro max 512gb A — r$ 3.050,00
+🤍💙🧡
+
+📲 13 128gb A — r$ 2.500,00
+💙🤍🩷💚
+
+📲 13 256gb A — r$ 2.600,00
+💙🖤🤍
+
+📲 13 pro 256gb A — r$ 3.150,00
+🩵🤍
+
+📲 13 pro 512gb A — r$ 3.250,00
+🩶🩵
+
+📲 13 pro max 128gb A — r$ 3.400,00
+🤍🧡🩵🩶
+
+📲 13 pro max 256gb A — r$ 3.600,00
+🩶
+
+📲 13 pro max 512gb A — r$ 3.700,00
+💚
+
+📲 14 128gb A — r$ 2.650,00
+💜🤍🖤
+
+📲 14 256gb A — r$ 2.800,00
+🩵❤️
+
+📲 14 512gb A — r$ 2.900,00
+❤️
+
+📲 14 plus 128gb A — r$ 2.850,00
+🖤🩵❤️💜
+
+📲 14 plus 256gb A — r$ 3.050,00
+💜
+
+📲 14 pro 128gb A — r$ 3.400,00
+🖤
+
+📲 14 pro 512gb A — r$ 3.650,00
+🧡
+
+📲 14 pro max 128gb A — r$ 3.750,00
+🖤💜🧡
+
+📲 14 pro max 256gb A — r$ 3.950,00
+🧡💜
+
+📲 14 pro max 512gb A — r$ 4.050,00
+🖤
+
+📲 15 128gb A — r$ 3.400,00
+🖤🩷
+
+📲 15 Plus 128gb A — r$ 3.600,00
+🩵
+
+📲 15 plus 256gb A — r$ 3.850,00
+🖤💚🩷
+
+📲 15 pro 128gb A — r$ 4.000,00
+🖤🩶
+
+📲 15 pro 256gb A — r$ 4.200,00
+🩶🖤
+
+📲 15 pro max 256gb A — r$ 4.650,00
+🩶💙
+
+📲 16 pro 128gb A — r$ 4.950,00
+🤍🩶
+
+📲 16 pro 256gb A — r$ 5.150,00
+🩶
+
+📲 16 pro max 256gb A — r$ 5.750,00
+🩶🖤🤍
+
+📲 17 pro 256gb A — r$ 8.100,00
+🧡💙
+
+LISTA DE ATACADO SENAPHONES
+APARELHOS AMERICANOS LEGITIMOS 🇺🇸 
+
+OBS: NÃO TRABALHAMOS COM CHINA🇨🇳 
+
+📱12 128gb 🇺🇸
+🔋100%
+💰2199
+🖤 Preto
+🤍 Branco
+💙 Azul
+————————————————————
+📱12 256gb 🇺🇸
+🔋87% ha 100%
+💰2230
+💜 Lilas
+🤍 Branco
+————————————————————
+📱12 Pro 128gb 🇺🇸
+🔋85% ha 100%
+💰2499
+💙 Azul
+🩶 Grafite
+🧡 Gold
+————————————————————
+📱12 Pro 256gb 🇺🇸
+🔋85% ha 100%
+💰2600
+💙 Azul
+————————————————————
+📱12 Pro Max 128gb 🇺🇸
+🔋85% ha 100%
+💰2850
+🩶 Grafite
+🧡 Gold
+💙 Azul
+————————————————————
+📱13 128gb 🇺🇸
+🔋85% ha 100%
+💰2550
+🤍 Branco
+💙 Azul
+🖤 Preto
+💚 Verde
+🩷 Rosa
+————————————————————
+📱13 256gb 🇺🇸
+🔋85% ha 100%
+💰2699
+🖤 Preto
+💙 Azul
+🤍 Branco
+————————————————————
+📱13 Pro 128gb 🇺🇸
+🔋86% h 100%
+💰2999
+🩵 Azul
+💚 Verde
+————————————————————
+📱13 Pro 256gb Branco 🇺🇸
+🔋94%
+💰3150
+🤍 Branco
+————————————————————
+📱13 Pro 512gb 🇺🇸
+🔋100%
+💰3250
+🧡 Gold
+🩵 Azul
+————————————————————
+📱13 Pro Max 128gb 🇺🇸
+🔋85% ha 100%
+💰3450
+🩶 Grafite
+🩵 Azul
+🧡 Gold
+————————————————————
+📱13 Pro Max 256gb 🇺🇸
+🔋85% ha 100%
+💰3650
+🩵 Azul
+————————————————————
+📱14 128gb 🇺🇸
+🔋85% ha 100%
+💰2699
+🩵 Azul
+🖤 Preto
+💜 Lilás
+🤍 Branco
+❤️ Vermelho
+————————————————————
+📱14 256gb 🇺🇸
+🔋100%
+💰2850
+🩵 Azul
+————————————————————
+📱14 Plus 128gb 🇺🇸
+🔋84% ha 100%
+💰2875
+🖤 Preto
+🩵 Azul
+💜 Lilas
+🤍 Branco
+————————————————————
+📱14 Pro 128gb 🇺🇸
+🔋85% ha 100%
+💰3450
+🖤 Preto
+💜 Roxo
+🧡 Gold
+————————————————————
+📱14 Pro 256gb 🇺🇸
+🔋100%
+💰3650
+🖤 Preto
+————————————————————
+📱14 Pro 512gb 🇺🇸
+🔋85% ha 100%
+💰3699
+🧡 Gold
+💜 Roxo
+————————————————————
+📱14 Pro Max 128gb 🇺🇸
+🔋100%
+💰3850
+💜 Roxo
+🖤 Preto
+————————————————————
+📱15 128gb 🇺🇸
+🔋85% ha 100%
+💰3450
+🩵 Azul
+🩷 Rosa
+————————————————————
+📱15 Plus 128gb 🇺🇸
+🔋89% ha 100%
+💰3650
+🖤 Preto
+💚 Verde
+🩷 Rosa
+————————————————————
+📱15 Plus 256gb 🇺🇸
+🔋87% ha 100%
+💰3850
+🖤 Preto
+————————————————————
+📱15 Pro 128gb 🇺🇸
+🔋85% ha 100%
+💰3999
+🖤 Preto
+————————————————————
+📱15 Pro 256gb 🇺🇸
+🔋85% ha 100%
+💰4199
+💙 Azul
+🖤 Preto
+————————————————————
+📱15 Pro Max 256gb🇺🇸
+🔋85% e 100%
+💰4699
+🖤 Preto
+💙 Azul
+🩶 Natural
+————————————————————
+📱15 Pro Max 512gb 🇺🇸
+🔋100%
+💰4899
+🖤 Preto
+————————————————————
+📱16 128gb 🇺🇸
+🔋94%
+💰4299
+🩷 Rosa
+————————————————————
+📱16 Pro 128gb 🇺🇸
+💰4999
+🔋91%
+🩶 Natural
+————————————————————
+📱16 Pro 256gb 🇺🇸
+🔋85% ha 100%
+💰5199
+🩶 Natural
+————————————————————
+📱16 Pro Max 256gb 🇺🇸
+🔋88% pra cima
+💰5899
+🧡 Desert
+🖤 Preto
+🩶 Natural
+🤍 Branco
+————————————————————
+📱16 Pro Max 512gb 🇺🇸
+🔋90% pra cima
+💰6050
+🧡 Desert
+🤍 Branco
+🖤 Preto
+————————————————————
+📱16 Pro Max 1TB 🇺🇸
+🔋90% em diante
+💰6199
+🧡 Desert
+🖤 Preto
+
+LISTA DE SEMINOVOS AQUI NA QUALITY*
+21/03/2026❤️‍🔥🙏
+
+📱11 PRO MAX 256GB
+🎨BRANCO 🔋100% (AVISO DE TELA)
+💰R$ 1.950,00
+
+📱12 128GB
+🎨BRANCO 🔋100%
+💰R$ 2.050,00
+
+📱12 PRO MAX 128GB
+🎨Azul 🔋100% (Aviso de tela)
+🎨PRETO 🔋100% (AVISO DE TELA)
+💰R$ 2.699,00
+
+📱12 PRO MAX 256GB (MARCAS NA CAMERA E LATERAL)
+🎨branco 🔋100%
+💰R$ 3.250,00
+
+📱13 128GB
+🎨ROSA 🔋84%
+💰R$ 2.649,00
+
+📱13 256GB
+🎨AZUL 🔋88% (PEQUENA MARCA NO ARO DA CAMERA)
+🎨PRETO 🔋83% (MARCAS NO ARO DA CAMERA)
+🎨ROSA 🔋100%
+💰R$ 2.699,00
+
+📱13 PRO 128GB (CAMERA GENUINA)
+🎨PRETO 🔋100%
+💰R$ 2.950,00
+
+📱13 PRO 128GB (PEQUENA MARCA DE USO)
+🎨AZUL 🔋100%
+💰R$ 3.150,00
+
+📱13 PRO 256GB
+🎨GOLD 🔋100%
+💰R$ 3.549,00
+
+📱13 PRO MAX 128GB
+🎨GOLD 🔋100%
+💰R$ 3.199,00
+
+📱14 128GB
+🎨Branco 🔋100% (MARCAS NO ARO DA CAMERA)
+💰R$ 2.799,00
+
+📱14 128GB
+🎨Azul 🔋100% (MARCAS NAS LATERAIS)
+💰R$ 2.899,00
+
+📱14 128GB
+🎨PRETO 🔋84% (MARCAS NA LATERAL E TRASEIRA E ARRANHAO NA TELA)
+💰R$ 2.799,00
+
+📱14 Plus 256GB
+🎨AMARELO 🔋85%
+💰R$ 3.099,00
+
+📱14 Pro 128GB
+🎨GOLD 🔋100%
+🎨PRETO 🔋100% (PEQUENAS MARCAS NO ARO DA CAMERA)
+💰R$ 3.499,00
+
+📱14 PRO MAX 128GB
+🎨ROXO 🔋94% (PEQUENAS MARCAS NA CAMERA)
+🎨PRETO 🔋100% (AVISO DE CAMERA+TELA+BATERIA GENUINA)
+🎨BRANCO 🔋100% (AVISO DE CAMERA E TELA)
+💰R$ 3.850,00
+
+📱14 PRO MAX 256GB
+🎨ROXO 🔋100%
+🎨PRETO 🔋100% (Tela levemente arranhada)
+💰R$ 4.150,00
+
+📱15 128GB
+🎨ROSA 🔋90% 86%
+🎨PRETO 🔋88% 90%
+💰R$ 3.250,00
+
+📱15 PRO 256GB
+🎨AZUL 🔋88% 100%
+💰R$ 4.699,00
+
+📱15 PRO 512GB
+🎨PRETO 🔋90%
+💰R$ 5.350,00
+
+📱15 PRO MAX 256GB
+🎨NATURAL 🔋89%
+🎨BRANCO 🔋86% 87%
+💰R$ 4.549,00
+
+📱16 128GB
+🎨PRETO 🔋91%
+💰R$ 4.399,00
+
+📱16 PLUS 128GB
+🎨PRETO 🔋92%
+💰R$ 4.649,00
+
+📱16 PRO MAX 256GB
+🎨NATURAL 🔋100%
+💰R$ 6.150,00
+
+📱17 PRO 256GB
+🎨LARANJA 🔋100% (MARCAS NA TRASEIRA)
+💰R$ 7.499,00
+`;
+
+    const modeloEntradaInput = document.getElementById("modeloEntrada");
+    const valorFornecedorInput = document.getElementById("valorFornecedor");
+    const bateriaInput = document.getElementById("bateria");
+    const notaInput = document.getElementById("nota");
+    const reparoInput = document.getElementById("reparo");
+    const caixaInput = document.getElementById("caixa");
+    const corInput = document.getElementById("cor");
+    const avariaInput = document.getElementById("avaria");
+    const valorAvariaInput = document.getElementById("valorAvaria");
+    const desvalInput = document.getElementById("desval");
+    const modeloDesejadoInput = document.getElementById("modeloDesejado");
+    const valorNovoInput = document.getElementById("valorNovo");
+    const resultadoDiv = document.getElementById("resultado");
+    const fornecedorEncontradoBox = document.getElementById("fornecedorEncontrado");
+    const opcoesEncontradasWrap = document.getElementById("opcoesEncontradasWrap");
+    const opcoesEncontradasDiv = document.getElementById("opcoesEncontradas");
+    const selectedOptionBadge = document.getElementById("selectedOptionBadge");
+
+    const totalRegistrosEl = document.getElementById("totalRegistros");
+    const totalFornecedoresEl = document.getElementById("totalFornecedores");
+    const totalCompativeisEl = document.getElementById("totalCompativeis");
+    const menorValorEl = document.getElementById("menorValor");
+
+    let ultimoParseTabela = [];
+    let opcoesCompativeis = [];
+    let opcaoSelecionada = null;
+    let ultimaAvaliacao = null;
+
+    function toggleFornecedor() {
+      const btn = document.querySelector(".toggle-olho");
+      if (valorFornecedorInput.type === "password") {
+        valorFornecedorInput.type = "text";
+        btn.textContent = "🙈";
+      } else {
+        valorFornecedorInput.type = "password";
+        btn.textContent = "👁";
+      }
     }
 
-    if (caixa === "Não") valorAvaliado -= 100;
-    if (["Lilás", "Amarelo", "Vermelho", "Rosa"].includes(cor)) valorAvaliado -= 100;
-    if (desval === "Sim") valorAvaliado -= 200;
-
-    // Aplica desconto extra manual em qualquer opção de avaria,
-    // desde que tenha valor preenchido maior que zero
-    if (valorAvaria > 0) {
-      valorAvaliado -= valorAvaria;
+    function formatarMoeda(valor) {
+      return Number(valor || 0).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
     }
-  }
 
-  const resultado = document.getElementById("resultado");
+    function normalizarNomeFornecedor(nome) {
+      const texto = String(nome || "").toUpperCase();
+      if (texto.includes("MANGA")) return "MANGA";
+      if (texto.includes("IMPORTTECH") || texto.includes("IMPORTECH")) return "IMPORTECH";
+      if (texto.includes("SENAPHONES") || texto.includes("SENA")) return "SENA";
+      if (texto.includes("QUALITY")) return "QUALITY";
+      return "FORNECEDOR";
+    }
 
-  if (!aprovado || valorAvaliado <= 0) {
-    resultado.innerHTML = `
-      <div class="result reprovado">
-        <h3>😞 Upgrade não aprovado</h3>
-        <p>Este aparelho não atende aos critérios para entrada no momento.</p>
-      </div>
-    `;
-    return;
-  }
+    function ordemFornecedor(nome) {
+      return ORDEM_FORNECEDORES[normalizarNomeFornecedor(nome)] || 999;
+    }
 
-  const diferenca = valorNovo - valorAvaliado;
+    function aplicarDescontoFornecedor(valorOriginal) {
+      return Math.max(Number(valorOriginal || 0) - AJUSTE_REVENDA_FORNECEDOR, 0);
+    }
 
-  const mensagem = `Olá, venho com uma boa notícia! 😊
+    function limparEmojis(texto) {
+      return String(texto || "")
+        .replace(/[\u{1F300}-\u{1FAFF}]/gu, " ")
+        .replace(/[\u2600-\u27BF]/g, " ");
+    }
+
+    function normalizarTexto(texto) {
+      return limparEmojis(String(texto || ""))
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^\w\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function removerObservacoes(texto) {
+      return String(texto || "")
+        .replace(/\([^)]*\)/g, " ")
+        .replace(/\[[^\]]*\]/g, " ")
+        .replace(/\{[^}]*\}/g, " ")
+        .replace(/\baviso de [^\n]*$/gi, " ")
+        .replace(/\bmarcas? [^\n]*$/gi, " ")
+        .replace(/\bpequenas? marcas? [^\n]*$/gi, " ")
+        .replace(/\btela [^\n]*$/gi, " ")
+        .replace(/\bcamera [^\n]*$/gi, " ")
+        .replace(/\bconsultorio\b/gi, " ")
+        .replace(/\bamericanos\b/gi, " ")
+        .replace(/\blegitimos\b/gi, " ")
+        .replace(/\bapple\b/gi, " ")
+        .replace(/\bgarantia\b/gi, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function normalizarValorMonetario(valorTexto) {
+      let valor = String(valorTexto || "").trim();
+      if (!valor) return null;
+
+      valor = valor
+        .replace(/[R$\s]/gi, "")
+        .replace(/\.(?=\d{3}(?:\D|$))/g, "")
+        .replace(",", ".")
+        .replace(/[^\d.]/g, "");
+
+      if (!valor) return null;
+
+      const numero = Number(valor);
+      if (Number.isNaN(numero) || numero <= 0 || numero > 100000) return null;
+      return numero;
+    }
+
+    function extrairTrechoPreco(texto) {
+      const original = String(texto || "");
+      if (!original.trim()) return null;
+
+      const regexes = [
+        /(?:r\$\s*)\d{1,3}(?:\.\d{3})*,\d{2}/gi,
+        /(?:r\$\s*)\d{3,5}(?:,\d{2})?/gi,
+        /💰\s*(?:r\$\s*)?\d{1,3}(?:\.\d{3})*,\d{2}/gi,
+        /💰\s*(?:r\$\s*)?\d{3,5}(?:,\d{2})?/gi,
+        /[-—–]\s*(?:r\$\s*)\d{1,3}(?:\.\d{3})*,\d{2}/gi,
+        /[-—–]\s*(?:r\$\s*)\d{3,5}(?:,\d{2})?/gi
+      ];
+
+      for (const regex of regexes) {
+        const matches = original.match(regex);
+        if (matches && matches.length) return matches[matches.length - 1];
+      }
+
+      const linhas = original.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+      for (let i = linhas.length - 1; i >= 0; i--) {
+        if (/💰|r\$/i.test(linhas[i])) return linhas[i];
+      }
+      return null;
+    }
+
+    function extrairPreco(texto) {
+      const trecho = extrairTrechoPreco(texto);
+      if (!trecho) return null;
+      return normalizarValorMonetario(trecho);
+    }
+
+    function extrairBateriaLinha(texto) {
+      const baterias = [...String(texto || "").matchAll(/(\d{2,3})\s*%/g)].map(m => Number(m[1]));
+      if (!baterias.length) return null;
+      return Math.max(...baterias);
+    }
+
+    function extrairCores(texto) {
+      const normal = normalizarTexto(texto);
+      const mapa = ["preto","branco","azul","verde","rosa","lilas","roxo","gold","grafite","natural","desert","laranja","amarelo","vermelho","silver"];
+      return mapa.filter(cor => normal.includes(cor));
+    }
+
+    function detectarFornecedorCabecalho(texto) {
+      const t = limparEmojis(String(texto || ""))
+        .replace(/\*/g, " ")
+        .replace(/[—–\-_=]{2,}/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (!t) return null;
+
+      const alvo = normalizarTexto(t);
+      if (alvo.includes("manga")) return "MANGA";
+      if (alvo.includes("importtech") || alvo.includes("importech")) return "IMPORTECH";
+      if (alvo.includes("senaphones") || alvo.includes("sena")) return "SENA";
+      if (alvo.includes("quality")) return "QUALITY";
+      return null;
+    }
+
+    function extrairInfoModelo(texto) {
+      let base = normalizarTexto(removerObservacoes(texto));
+
+      base = base
+        .replace(/\biphone\b/g, " ")
+        .replace(/\bgrade a\b/g, " ")
+        .replace(/\bgrade ab\b/g, " ")
+        .replace(/\bgrade\b/g, " ")
+        .replace(/\baqui\b/g, " ")
+        .replace(/\bseminovos\b/g, " ")
+        .replace(/\bvitrine\b/g, " ")
+        .replace(/\batacado\b/g, " ")
+        .replace(/\blista\b/g, " ")
+        .replace(/\busa\b/g, " ")
+        .replace(/\beua\b/g, " ")
+        .replace(/\bchina\b/g, " ")
+        .replace(/\bbateria\b/g, " ")
+        .replace(/\bha\b/g, " ")
+        .replace(/\bh\b/g, " ")
+        .replace(/\bpra cima\b/g, " ")
+        .replace(/\bem diante\b/g, " ")
+        .replace(/\bpreto\b|\bbranco\b|\bazul\b|\bverde\b|\brosa\b|\blilas\b|\broxo\b|\bgold\b|\bgrafite\b|\bnatural\b|\bdesert\b|\blaranja\b|\bamarelo\b|\bvermelho\b|\bsilver\b/g, " ")
+        .replace(/\b1 tera\b/g, " 1tb ")
+        .replace(/\b1tera\b/g, " 1tb ")
+        .replace(/\b256\b/g, " 256gb ")
+        .replace(/\b128\b/g, " 128gb ")
+        .replace(/\b512\b/g, " 512gb ")
+        .replace(/\b64\b/g, " 64gb ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      const numeroMatch = base.match(/\b(11|12|13|14|15|16|17)\b/);
+      if (!numeroMatch) {
+        return {
+          numero: "",
+          variante: "",
+          capacidade: "",
+          chaveSemCapacidade: "",
+          chaveCompleta: ""
+        };
+      }
+
+      const numero = numeroMatch[1];
+
+      let variante = "";
+      if (/\bpro max\b/.test(base) || /\bpromax\b/.test(base)) variante = "pro max";
+      else if (/\bplus\b/.test(base)) variante = "plus";
+      else if (/\bpro\b/.test(base)) variante = "pro";
+      else if (/\bmini\b/.test(base)) variante = "mini";
+      else if (/\bmax\b/.test(base)) variante = "max";
+
+      const capacidadeMatch = base.match(/\b(64gb|128gb|256gb|512gb|1tb)\b/);
+      const capacidade = capacidadeMatch ? capacidadeMatch[1] : "";
+
+      const chaveSemCapacidade = [numero, variante].filter(Boolean).join(" ").trim();
+      const chaveCompleta = [numero, variante, capacidade].filter(Boolean).join(" ").trim();
+
+      return { numero, variante, capacidade, chaveSemCapacidade, chaveCompleta };
+    }
+
+    function limparLinhaModeloComPreco(linha) {
+      const trechoPreco = extrairTrechoPreco(linha);
+      let limpa = String(linha || "")
+        .replace(/^📱\s*/, "")
+        .replace(/^📲\s*/, "")
+        .replace(/^📍\s*/, "")
+        .trim();
+
+      if (trechoPreco) limpa = limpa.replace(trechoPreco, " ").trim();
+
+      limpa = limpa
+        .replace(/[—–]+/g, " ")
+        .replace(/\s{2,}/g, " ")
+        .trim();
+
+      return limpa;
+    }
+
+    function criarRegistroFornecedor(fornecedor, modeloOriginal, valorOriginal, bateria, cores, detalhes) {
+      const fornecedorPadronizado = normalizarNomeFornecedor(fornecedor);
+      const valorFornecedorOriginal = Number(valorOriginal || 0);
+      const valorRevenda = aplicarDescontoFornecedor(valorFornecedorOriginal);
+      const infoModelo = extrairInfoModelo(modeloOriginal);
+
+      return {
+        fornecedor: fornecedorPadronizado,
+        modeloOriginal,
+        modeloPadronizado: infoModelo.chaveCompleta,
+        modeloBase: infoModelo.chaveSemCapacidade,
+        modeloInfo: infoModelo,
+        valorOriginal: valorFornecedorOriginal,
+        valor: valorRevenda,
+        bateria: bateria || null,
+        cores: Array.isArray(cores) ? cores : [],
+        detalhes: detalhes || ""
+      };
+    }
+
+    function parseLinhasEstruturadas(texto, fornecedorPadrao = "FORNECEDOR") {
+      const linhas = String(texto || "")
+        .split(/\r?\n/)
+        .map(l => l.trim())
+        .filter(Boolean);
+
+      const registros = [];
+      let fornecedorAtual = fornecedorPadrao;
+      let modeloAtual = "";
+      let bateriaAtual = null;
+      let coresAtuais = [];
+      let detalhesAtuais = "";
+
+      function resetBloco() {
+        modeloAtual = "";
+        bateriaAtual = null;
+        coresAtuais = [];
+        detalhesAtuais = "";
+      }
+
+      function salvarPorPreco(linhaPreco) {
+        const valorOriginal = extrairPreco(linhaPreco);
+        if (!modeloAtual || valorOriginal === null) return;
+
+        registros.push(
+          criarRegistroFornecedor(
+            fornecedorAtual,
+            modeloAtual,
+            valorOriginal,
+            bateriaAtual,
+            [...coresAtuais],
+            detalhesAtuais.trim()
+          )
+        );
+        resetBloco();
+      }
+
+      for (const linha of linhas) {
+        const fornecedorDetectado = detectarFornecedorCabecalho(linha);
+        if (fornecedorDetectado) {
+          fornecedorAtual = fornecedorDetectado;
+          continue;
+        }
+
+        const linhaNormal = normalizarTexto(linha);
+
+        const ehModeloLinha =
+          /^📱/.test(linha) ||
+          /^📲/.test(linha) ||
+          /^📍/.test(linha) ||
+          /^\s*iphone\s/i.test(linhaNormal) ||
+          /^\s*(11|12|13|14|15|16|17)\s*(pro max|pro|plus|max|mini)?/i.test(linhaNormal);
+
+        const ehPrecoLinha =
+          /💰/i.test(linha) ||
+          /r\$\s*[\d.,]+/i.test(linha);
+
+        if (ehModeloLinha && ehPrecoLinha) {
+          const valorOriginal = extrairPreco(linha);
+          const modeloLimpo = limparLinhaModeloComPreco(linha);
+
+          if (valorOriginal !== null) {
+            registros.push(
+              criarRegistroFornecedor(
+                fornecedorAtual,
+                modeloLimpo,
+                valorOriginal,
+                extrairBateriaLinha(linha),
+                extrairCores(linha),
+                ((linha.match(/\(([^)]*)\)/g) || []).join(" ") || "").trim()
+              )
+            );
+          }
+          continue;
+        }
+
+        if (ehModeloLinha) {
+          modeloAtual = linha
+            .replace(/^📱\s*/, "")
+            .replace(/^📲\s*/, "")
+            .replace(/^📍\s*/, "")
+            .trim();
+
+          const bat = extrairBateriaLinha(linha);
+          if (bat !== null) bateriaAtual = bat;
+
+          const cors = extrairCores(linha);
+          if (cors.length) coresAtuais.push(...cors.filter(c => !coresAtuais.includes(c)));
+
+          const detalhes = ((linha.match(/\(([^)]*)\)/g) || []).join(" ") || "").trim();
+          if (detalhes) detalhesAtuais = (detalhesAtuais + " " + detalhes).trim();
+          continue;
+        }
+
+        if (ehPrecoLinha) {
+          salvarPorPreco(linha);
+          continue;
+        }
+
+        if (modeloAtual) {
+          const bat = extrairBateriaLinha(linha);
+          if (bat !== null) bateriaAtual = bat;
+
+          const cors = extrairCores(linha);
+          if (cors.length) coresAtuais.push(...cors.filter(c => !coresAtuais.includes(c)));
+
+          const detalhes = ((linha.match(/\(([^)]*)\)/g) || []).join(" ") || "").trim();
+          if (detalhes) detalhesAtuais = (detalhesAtuais + " " + detalhes).trim();
+        }
+      }
+
+      return registros.filter(r => r.modeloInfo.numero && r.valor >= 0);
+    }
+
+    function parsePorBlocosDeTexto(texto, fornecedorPadrao = "FORNECEDOR") {
+      const bruto = String(texto || "");
+      const segmentos = bruto
+        .split(/(?=📱|📲|📍)/g)
+        .map(s => s.trim())
+        .filter(Boolean);
+
+      const registros = [];
+      let fornecedorAtual = fornecedorPadrao;
+
+      for (const seg of segmentos) {
+        const primeiraLinha = seg.split(/\r?\n/)[0]?.trim() || "";
+        const fornecedorDetectado = detectarFornecedorCabecalho(primeiraLinha);
+        if (fornecedorDetectado) fornecedorAtual = fornecedorDetectado;
+
+        const valorOriginal = extrairPreco(seg);
+        if (valorOriginal === null) continue;
+
+        const linhas = seg.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+        const linhaModelo = linhas.find(l => /^📱|^📲|^📍/i.test(l)) || linhas[0] || "";
+
+        const modelo = limparLinhaModeloComPreco(linhaModelo);
+        const bateria = extrairBateriaLinha(seg);
+        const cores = extrairCores(seg);
+        const detalhes = ((seg.match(/\(([^)]*)\)/g) || []).join(" ") || "").trim();
+
+        const registro = criarRegistroFornecedor(
+          fornecedorAtual,
+          modelo,
+          valorOriginal,
+          bateria,
+          cores,
+          detalhes
+        );
+
+        if (!registro.modeloInfo.numero) continue;
+        registros.push(registro);
+      }
+
+      return registros;
+    }
+
+    function parseTabelaFornecedores(texto) {
+      const registrosA = parseLinhasEstruturadas(texto, "FORNECEDOR");
+      const registrosB = parsePorBlocosDeTexto(texto, "FORNECEDOR");
+      const todos = [...registrosA, ...registrosB];
+      const mapa = new Map();
+
+      for (const item of todos) {
+        if (item.valorOriginal <= 0 || item.valorOriginal > 100000) continue;
+
+        const chave = [
+          item.fornecedor,
+          item.modeloPadronizado,
+          item.valorOriginal,
+          item.bateria || "",
+          (item.cores || []).join(","),
+          item.detalhes || ""
+        ].join("|");
+
+        if (!mapa.has(chave)) mapa.set(chave, item);
+      }
+
+      return [...mapa.values()]
+        .filter(item => item.modeloInfo.numero && item.valorOriginal > 0)
+        .sort((a, b) => {
+          const ordemA = ordemFornecedor(a.fornecedor);
+          const ordemB = ordemFornecedor(b.fornecedor);
+          if (ordemA !== ordemB) return ordemA - ordemB;
+          return a.valor - b.valor;
+        });
+    }
+
+    function atualizarEstatisticas(registros, compativeis = []) {
+      totalRegistrosEl.textContent = String(registros.length);
+      totalFornecedoresEl.textContent = String(new Set(registros.map(r => r.fornecedor)).size);
+      totalCompativeisEl.textContent = String(compativeis.length);
+      menorValorEl.textContent = compativeis.length ? formatarMoeda(compativeis[0].valor) : "R$ 0,00";
+    }
+
+    function renderOpcoes(opcoes) {
+      opcoesEncontradasDiv.innerHTML = "";
+
+      if (!opcoes.length) {
+        opcoesEncontradasWrap.style.display = "none";
+        return;
+      }
+
+      opcoesEncontradasWrap.style.display = "block";
+
+      opcoes.forEach((item, index) => {
+        const detalhes = item.detalhes ? `<span class="tag">📝 ${item.detalhes}</span>` : "";
+        const bateria = item.bateria ? `<span class="tag">🔋 ${item.bateria}%</span>` : "";
+        const cores = item.cores && item.cores.length ? `<span class="tag">🎨 ${item.cores.join(", ")}</span>` : "";
+        const ordem = `<span class="tag">📌 ${item.fornecedor}</span>`;
+        const desconto = `<span class="tag">➖ - ${formatarMoeda(AJUSTE_REVENDA_FORNECEDOR)}</span>`;
+        const modelo = `<span class="tag">🎯 ${item.modeloBase || item.modeloPadronizado}</span>`;
+
+        const card = document.createElement("div");
+        card.className = "option-card";
+        card.innerHTML = `
+          <div class="option-top">
+            <div>
+              <div class="option-model">${item.modeloOriginal}</div>
+              <div class="option-meta">🏪 ${item.fornecedor}</div>
+            </div>
+
+            <div class="option-price-wrap">
+              <span class="option-price-old">${formatarMoeda(item.valorOriginal)}</span>
+              <div class="option-price">${formatarMoeda(item.valor)}</div>
+            </div>
+          </div>
+
+          <div class="option-tags">
+            ${ordem}
+            ${modelo}
+            ${desconto}
+            ${bateria}
+            ${cores}
+            ${detalhes}
+          </div>
+
+          <div class="option-actions">
+            <button type="button" class="btn-blue" onclick="selecionarOpcao(${index})">✅ Escolher esta opção</button>
+          </div>
+        `;
+
+        opcoesEncontradasDiv.appendChild(card);
+      });
+    }
+
+    function mostrarFornecedorSelecionado(item) {
+      if (!item) {
+        fornecedorEncontradoBox.style.display = "none";
+        fornecedorEncontradoBox.innerHTML = "";
+        selectedOptionBadge.style.display = "none";
+        selectedOptionBadge.innerHTML = "";
+        return;
+      }
+
+      fornecedorEncontradoBox.style.display = "block";
+      fornecedorEncontradoBox.innerHTML = `
+        <strong>🏪 Opção escolhida</strong><br>
+        <span><strong>Fornecedor:</strong> ${item.fornecedor}</span><br>
+        <span><strong>Modelo:</strong> ${item.modeloOriginal}</span><br>
+        <span><strong>Modelo filtrado:</strong> ${item.modeloPadronizado || item.modeloBase}</span><br>
+        <span><strong>Valor original:</strong> ${formatarMoeda(item.valorOriginal)}</span><br>
+        <span><strong>Revenda aplicada:</strong> ${formatarMoeda(item.valor)} <small>(- ${formatarMoeda(AJUSTE_REVENDA_FORNECEDOR)})</small></span>
+        ${item.bateria ? `<br><span><strong>Bateria encontrada:</strong> ${item.bateria}%</span>` : ""}
+        ${item.cores && item.cores.length ? `<br><span><strong>Cores:</strong> ${item.cores.join(", ")}</span>` : ""}
+        ${item.detalhes ? `<br><span><strong>Observações:</strong> ${item.detalhes}</span>` : ""}
+      `;
+
+      selectedOptionBadge.style.display = "inline-flex";
+      selectedOptionBadge.className = "selected-badge";
+      selectedOptionBadge.innerHTML = `✅ Selecionado: ${item.fornecedor} • Revenda ${formatarMoeda(item.valor)}`;
+    }
+
+    function selecionarOpcao(index) {
+      const item = opcoesCompativeis[index];
+      if (!item) return;
+
+      opcaoSelecionada = item;
+      valorFornecedorInput.value = item.valor;
+
+      if (!bateriaInput.value && item.bateria) {
+        bateriaInput.value = item.bateria;
+      }
+
+      mostrarFornecedorSelecionado(item);
+    }
+
+    function filtrarModelosExatos(registros, modeloDigitado) {
+      const busca = extrairInfoModelo(modeloDigitado);
+
+      if (!busca.numero) return [];
+
+      return registros.filter(item => {
+        if (!item.modeloInfo || !item.modeloInfo.numero) return false;
+        if (item.modeloInfo.numero !== busca.numero) return false;
+        if ((item.modeloInfo.variante || "") !== (busca.variante || "")) return false;
+
+        if (busca.capacidade) {
+          return (item.modeloInfo.capacidade || "") === busca.capacidade;
+        }
+
+        return true;
+      });
+    }
+
+    function analisarTabelaFornecedores() {
+      const modeloInformado = modeloEntradaInput.value.trim();
+
+      if (!modeloInformado) {
+        alert("Preencha o modelo de entrada antes de procurar nas listas.");
+        modeloEntradaInput.focus();
+        return;
+      }
+
+      const registros = ultimoParseTabela.length ? ultimoParseTabela : parseTabelaFornecedores(TABELAS_FORNECEDORES_RAW);
+      ultimoParseTabela = registros;
+
+      const compativeis = filtrarModelosExatos(registros, modeloInformado)
+        .sort((a, b) => {
+          const ordemA = ordemFornecedor(a.fornecedor);
+          const ordemB = ordemFornecedor(b.fornecedor);
+          if (ordemA !== ordemB) return ordemA - ordemB;
+
+          const capA = a.modeloInfo.capacidade || "";
+          const capB = b.modeloInfo.capacidade || "";
+          if (capA !== capB) return capA.localeCompare(capB);
+
+          return a.valor - b.valor;
+        });
+
+      opcoesCompativeis = compativeis;
+      opcaoSelecionada = null;
+      mostrarFornecedorSelecionado(null);
+      atualizarEstatisticas(registros, compativeis);
+      renderOpcoes(compativeis);
+
+      if (!registros.length) {
+        alert("Não consegui ler os modelos da base de fornecedores no código.");
+        return;
+      }
+
+      if (!compativeis.length) {
+        alert("Não encontrei opções exatas para esse modelo. Exemplo: se buscar iPhone 14, o sistema não mistura com 14 Plus, 14 Pro ou 14 Pro Max.");
+        return;
+      }
+
+      selecionarOpcao(0);
+    }
+
+    function recarregarBaseFornecedores() {
+      ultimoParseTabela = parseTabelaFornecedores(TABELAS_FORNECEDORES_RAW);
+      opcoesCompativeis = [];
+      opcaoSelecionada = null;
+      opcoesEncontradasDiv.innerHTML = "";
+      opcoesEncontradasWrap.style.display = "none";
+      mostrarFornecedorSelecionado(null);
+      atualizarEstatisticas(ultimoParseTabela, []);
+      alert("Base de fornecedores recarregada a partir do código.");
+    }
+
+    function construirDadosAvaliacao() {
+      const valorFornecedor = Number(valorFornecedorInput.value) || 0;
+      const bateria = Number(bateriaInput.value) || 0;
+      const nota = notaInput.value;
+      const reparo = reparoInput.value;
+      const caixa = caixaInput.value;
+      const cor = corInput.value;
+      const desval = desvalInput.value;
+      const avaria = avariaInput.value;
+      const valorAvaria = Number(valorAvariaInput.value) || 0;
+      const modeloEntrada = modeloEntradaInput.value.trim();
+      const modeloDesejado = modeloDesejadoInput.value.trim();
+      const valorNovo = Number(valorNovoInput.value) || 0;
+
+      let valorAvaliado = valorFornecedor;
+      let aprovado = true;
+
+      if (nota === "Não") aprovado = false;
+      if (reparo === "Sim") aprovado = false;
+
+      let descontoBateria = 0;
+      if (bateria < 86 && bateria > 0) descontoBateria = 300;
+      else if (bateria <= 89 && bateria > 0) descontoBateria = 150;
+
+      const descontoCaixa = caixa === "Não" ? 100 : 0;
+      const descontoCor = ["Lilás", "Amarelo", "Vermelho", "Rosa"].includes(cor) ? 100 : 0;
+      const descontoDesval = desval === "Sim" ? 200 : 0;
+      const descontoAvaria = valorAvaria > 0 ? valorAvaria : 0;
+
+      if (aprovado) {
+        valorAvaliado -= descontoBateria;
+        valorAvaliado -= descontoCaixa;
+        valorAvaliado -= descontoCor;
+        valorAvaliado -= descontoDesval;
+        valorAvaliado -= descontoAvaria;
+      }
+
+      const descontos = [
+        { emoji: "🔋", titulo: "Bateria", descricao: bateria ? `Saúde informada: ${bateria}%` : "Sem informação", valor: descontoBateria, classe: "emoji-green" },
+        { emoji: "📦", titulo: "Caixa", descricao: caixa === "Não" ? "Sem caixa" : "Com caixa", valor: descontoCaixa, classe: "emoji-blue" },
+        { emoji: "🎨", titulo: "Cor", descricao: `Cor informada: ${cor}`, valor: descontoCor, classe: "emoji-yellow" },
+        { emoji: "📉", titulo: "Desvalorização padrão", descricao: desval === "Sim" ? "Aplicada" : "Não aplicada", valor: descontoDesval, classe: "emoji-purple" },
+        { emoji: "🧩", titulo: "Avaria extra", descricao: avaria, valor: descontoAvaria, classe: "emoji-red" }
+      ];
+
+      const totalDescontos = descontos.reduce((acc, item) => acc + item.valor, 0);
+      const diferenca = valorNovo - valorAvaliado;
+
+      const mensagem = `Olá, venho com uma boa notícia! 😊
 Seu aparelho foi aceito como parte do valor para adquirir seu novo iPhone conosco. ✅
 
 OFERTA UPGRADE 🔄
 
 DE ENTRADA: ${modeloEntrada}
-(valor avaliado: R$ ${valorAvaliado.toLocaleString("pt-BR")})
+(valor avaliado: ${formatarMoeda(valorAvaliado)})
 
 AVARIA INFORMADA: ${avaria}
-${valorAvaria > 0 ? `(desconto adicional por avaria: R$ ${valorAvaria.toLocaleString("pt-BR")})` : ""}
+${valorAvaria > 0 ? `(desconto adicional por avaria: ${formatarMoeda(valorAvaria)})` : ""}
 
 DESEJA ADQUIRIR: ${modeloDesejado}
-(valor do desejado: R$ ${valorNovo.toLocaleString("pt-BR")})
+(valor do desejado: ${formatarMoeda(valorNovo)})
 
-DIFERENÇA / ENTRADA: R$ ${diferenca.toLocaleString("pt-BR")}
+DIFERENÇA / ENTRADA: ${formatarMoeda(diferenca)}
 -OFERTA VÁLIDA POR 1 DIA-`;
 
-  resultado.innerHTML = `
-    <div class="result aprovado">
-      <h3>🎉 Upgrade aprovado!</h3>
-      <pre id="msg">${mensagem}</pre>
+      return {
+        valorFornecedor,
+        bateria,
+        nota,
+        reparo,
+        caixa,
+        cor,
+        desval,
+        avaria,
+        valorAvaria,
+        modeloEntrada,
+        modeloDesejado,
+        valorNovo,
+        valorAvaliado,
+        totalDescontos,
+        diferenca,
+        aprovado,
+        mensagem,
+        descontos,
+        fornecedorSelecionado: opcaoSelecionada
+      };
+    }
 
-      <div class="actions">
-        <button class="copy" onclick="copiar()">📋 Copiar mensagem</button>
-        <button class="whatsapp" onclick="whatsapp()">💬 Enviar no WhatsApp</button>
-      </div>
-    </div>
-  `;
-}
+    function avaliar() {
+      const dados = construirDadosAvaliacao();
+      ultimaAvaliacao = dados;
 
-function copiar() {
-  const texto = document.getElementById("msg").innerText;
-  navigator.clipboard.writeText(texto);
-  alert("Mensagem copiada!");
-}
+      if (!dados.modeloEntrada) {
+        alert("Preencha o modelo de entrada.");
+        modeloEntradaInput.focus();
+        return;
+      }
 
-function whatsapp() {
-  const texto = encodeURIComponent(document.getElementById("msg").innerText);
-  window.open(`https://wa.me/?text=${texto}`, "_blank");
-}
+      if (!dados.valorFornecedor) {
+        alert("Escolha uma opção encontrada ou preencha manualmente o valor de revenda.");
+        valorFornecedorInput.focus();
+        return;
+      }
 
-const modeloEntradaInput = document.getElementById("modeloEntrada");
-const valorFornecedorInput = document.getElementById("valorFornecedor");
-const bateriaInput = document.getElementById("bateria");
-const notaInput = document.getElementById("nota");
-const reparoInput = document.getElementById("reparo");
-const caixaInput = document.getElementById("caixa");
-const corInput = document.getElementById("cor");
-const avariaInput = document.getElementById("avaria");
-const valorAvariaInput = document.getElementById("valorAvaria");
-const desvalInput = document.getElementById("desval");
-const modeloDesejadoInput = document.getElementById("modeloDesejado");
-const valorNovoInput = document.getElementById("valorNovo");
-</script>
+      if (!dados.modeloDesejado) {
+        alert("Preencha o modelo desejado.");
+        modeloDesejadoInput.focus();
+        return;
+      }
 
+      if (!dados.valorNovo) {
+        alert("Preencha o valor do aparelho desejado.");
+        valorNovoInput.focus();
+        return;
+      }
+
+      if (!dados.aprovado || dados.valorAvaliado <= 0) {
+        resultadoDiv.innerHTML = `
+          <div class="result-box reproved">
+            <h3 class="result-title">😞 Upgrade não aprovado</h3>
+
+            <div class="discounts">
+              <div class="discount-item">
+                <div class="discount-left">
+                  <div class="emoji-badge emoji-red">🧾</div>
+                  <div>
+                    <div class="discount-name">Nota fiscal</div>
+                    <div class="discount-desc">${dados.nota === "Não" ? "Sem nota fiscal" : "Com nota fiscal"}</div>
+                  </div>
+                </div>
+                <div class="discount-value ${dados.nota === "Não" ? "neg" : "zero"}">${dados.nota === "Não" ? "Reprova" : "OK"}</div>
+              </div>
+
+              <div class="discount-item">
+                <div class="discount-left">
+                  <div class="emoji-badge emoji-red">🛠️</div>
+                  <div>
+                    <div class="discount-name">Histórico de reparo</div>
+                    <div class="discount-desc">${dados.reparo === "Sim" ? "Já teve reparo" : "Sem reparo"}</div>
+                  </div>
+                </div>
+                <div class="discount-value ${dados.reparo === "Sim" ? "neg" : "zero"}">${dados.reparo === "Sim" ? "Reprova" : "OK"}</div>
+              </div>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const descontosHtml = dados.descontos.map(item => `
+        <div class="discount-item">
+          <div class="discount-left">
+            <div class="emoji-badge ${item.classe}">${item.emoji}</div>
+            <div>
+              <div class="discount-name">${item.titulo}</div>
+              <div class="discount-desc">${item.descricao}</div>
+            </div>
+          </div>
+          <div class="discount-value ${item.valor > 0 ? "neg" : "zero"}">
+            ${item.valor > 0 ? "- " + formatarMoeda(item.valor) : formatarMoeda(0)}
+          </div>
+        </div>
+      `).join("");
+
+      const fornecedorHtml = dados.fornecedorSelecionado ? `
+        <div class="message-box">
+          <h4>🏪 Opção escolhida</h4>
+          <pre>Fornecedor: ${dados.fornecedorSelecionado.fornecedor}
+Modelo localizado: ${dados.fornecedorSelecionado.modeloOriginal}
+Valor original do fornecedor: ${formatarMoeda(dados.fornecedorSelecionado.valorOriginal)}
+Revenda aplicada: ${formatarMoeda(dados.fornecedorSelecionado.valor)} (- ${formatarMoeda(AJUSTE_REVENDA_FORNECEDOR)})
+${dados.fornecedorSelecionado.bateria ? `Bateria encontrada: ${dados.fornecedorSelecionado.bateria}%` : ""}
+${dados.fornecedorSelecionado.cores && dados.fornecedorSelecionado.cores.length ? `Cores encontradas: ${dados.fornecedorSelecionado.cores.join(", ")}` : ""}
+${dados.fornecedorSelecionado.detalhes ? `Observações: ${dados.fornecedorSelecionado.detalhes}` : ""}</pre>
+        </div>
+      ` : "";
+
+      resultadoDiv.innerHTML = `
+        <div class="result-box approved">
+          <h3 class="result-title">🎉 Upgrade aprovado!</h3>
+
+          <div class="summary-grid">
+            <div class="summary-card">
+              <div class="summary-label">💰 Revenda base</div>
+              <div class="summary-value">${formatarMoeda(dados.valorFornecedor)}</div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-label">🧾 Total descontos</div>
+              <div class="summary-value">${formatarMoeda(dados.totalDescontos)}</div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-label">✅ Valor avaliado</div>
+              <div class="summary-value">${formatarMoeda(dados.valorAvaliado)}</div>
+            </div>
+          </div>
+
+          <div class="summary-grid">
+            <div class="summary-card">
+              <div class="summary-label">📱 Entrada</div>
+              <div class="summary-value" style="font-size:15px;">${dados.modeloEntrada}</div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-label">🛍️ Desejado</div>
+              <div class="summary-value" style="font-size:15px;">${dados.modeloDesejado}</div>
+            </div>
+            <div class="summary-card">
+              <div class="summary-label">💸 Diferença</div>
+              <div class="summary-value">${formatarMoeda(dados.diferenca)}</div>
+            </div>
+          </div>
+
+          <h4 style="margin:18px 0 10px;">🎯 Descontos aplicados</h4>
+          <div class="discounts">${descontosHtml}</div>
+
+          ${fornecedorHtml}
+
+          <div class="message-box">
+            <h4>📋 Mensagem em texto</h4>
+            <pre id="msg">${dados.mensagem}</pre>
+          </div>
+
+          <div class="actions-3 no-print">
+            <button class="btn-blue" onclick="copiar()">📋 Copiar mensagem</button>
+            <button class="btn-green" onclick="whatsapp()">💬 Enviar texto no WhatsApp</button>
+            <button class="btn-orange" onclick="exportarPDF()">📄 Exportar PDF</button>
+          </div>
+
+          <div class="client-card-wrap">
+            <div id="clientCard" class="client-card">
+              <div class="client-card-top">
+                <div class="client-brand">UPGRADE APPLE • AVALIAÇÃO</div>
+                <div class="client-badge">🔥 OFERTA VÁLIDA HOJE</div>
+              </div>
+
+              <div class="client-title">🎉 Seu aparelho foi aprovado na avaliação!</div>
+              <div class="client-subtitle">
+                Você já pode usar o seu iPhone como parte do pagamento do novo aparelho. Aproveite essa oportunidade e garanta sua troca com condição especial. 🚀✨
+              </div>
+
+              <div class="client-highlight-grid">
+                <div class="client-highlight">
+                  <small>💎 valor do seu aparelho</small>
+                  <strong>${formatarMoeda(dados.valorAvaliado)}</strong>
+                </div>
+                <div class="client-highlight">
+                  <small>🛍️ valor do desejado</small>
+                  <strong>${formatarMoeda(dados.valorNovo)}</strong>
+                </div>
+                <div class="client-highlight">
+                  <small>💸 diferença final</small>
+                  <strong>${formatarMoeda(dados.diferenca)}</strong>
+                </div>
+              </div>
+
+              <div class="client-models">
+                <div class="client-model-box">
+                  <small>📱 seu aparelho</small>
+                  <strong>${dados.modeloEntrada}</strong>
+                </div>
+                <div class="client-model-box">
+                  <small>✨ modelo desejado</small>
+                  <strong>${dados.modeloDesejado}</strong>
+                </div>
+              </div>
+
+              <div class="client-triggers">
+                <span class="pill">⚡ condição especial</span>
+                <span class="pill">⏳ avaliação com prazo</span>
+                <span class="pill">🔒 reserva mediante confirmação</span>
+                <span class="pill">💙 upgrade facilitado</span>
+              </div>
+
+              <div class="client-bottom">
+                <div class="client-copy">
+                  ✅ Avaliação aprovada<br>
+                  📌 Oferta sujeita à disponibilidade do estoque<br>
+                  ⏰ Quanto antes confirmar, maior a chance de garantir essa condição
+                </div>
+                <div class="client-cta">
+                  CHAME AGORA 💬<br>
+                  E GARANTA O SEU
+                </div>
+              </div>
+            </div>
+
+            <div class="client-actions no-print">
+              <button class="btn-purple" onclick="baixarImagemAvaliacao()">🖼️ Baixar foto da avaliação</button>
+              <button class="btn-green" onclick="compartilharImagemAvaliacao()">📲 Compartilhar foto</button>
+              <button class="btn-blue" onclick="abrirImagemAvaliacao()">🔍 Abrir imagem</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function copiar() {
+      const msg = document.getElementById("msg");
+      if (!msg) {
+        alert("Faça a avaliação primeiro.");
+        return;
+      }
+      navigator.clipboard.writeText(msg.innerText);
+      alert("Mensagem copiada!");
+    }
+
+    function whatsapp() {
+      const msg = document.getElementById("msg");
+      if (!msg) {
+        alert("Faça a avaliação primeiro.");
+        return;
+      }
+      const texto = encodeURIComponent(msg.innerText);
+      window.open(`https://wa.me/?text=${texto}`, "_blank");
+    }
+
+    async function gerarImagemBlob() {
+      const card = document.getElementById("clientCard");
+      if (!card) {
+        alert("Faça a avaliação primeiro para gerar a imagem.");
+        return null;
+      }
+
+      const canvas = await html2canvas(card, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: null
+      });
+
+      return await new Promise(resolve => canvas.toBlob(resolve, "image/png", 1));
+    }
+
+    async function baixarImagemAvaliacao() {
+      const blob = await gerarImagemBlob();
+      if (!blob) return;
+
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `avaliacao-cliente-${(modeloEntradaInput.value || "iphone").replace(/[^\w\d]+/g, "-").toLowerCase()}.png`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    async function abrirImagemAvaliacao() {
+      const blob = await gerarImagemBlob();
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      window.open(url, "_blank");
+    }
+
+    async function compartilharImagemAvaliacao() {
+      const blob = await gerarImagemBlob();
+      if (!blob) return;
+
+      const arquivo = new File([blob], "avaliacao-upgrade.png", { type: "image/png" });
+
+      if (navigator.canShare && navigator.canShare({ files: [arquivo] })) {
+        try {
+          await navigator.share({
+            title: "Avaliação do Upgrade",
+            text: "Segue a avaliação do seu aparelho 📱✨",
+            files: [arquivo]
+          });
+        } catch (e) {}
+      } else {
+        alert("Seu navegador não suporta compartilhamento direto. A imagem será baixada.");
+        baixarImagemAvaliacao();
+      }
+    }
+
+    function exportarPDF() {
+      const dados = ultimaAvaliacao || construirDadosAvaliacao();
+
+      if (!dados.modeloEntrada || !dados.valorFornecedor || !dados.modeloDesejado || !dados.valorNovo) {
+        alert("Preencha os dados e faça a avaliação antes de exportar o PDF.");
+        return;
+      }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
+
+      const x = 14;
+      let y = 16;
+
+      function linha(t, size = 11, bold = false) {
+        doc.setFont("helvetica", bold ? "bold" : "normal");
+        doc.setFontSize(size);
+        const linhas = doc.splitTextToSize(String(t), 180);
+        doc.text(linhas, x, y);
+        y += linhas.length * 6;
+      }
+
+      function titulo(t, size = 16) {
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(size);
+        doc.text(t, x, y);
+        y += 8;
+      }
+
+      function secao(t) {
+        if (y > 270) {
+          doc.addPage();
+          y = 18;
+        }
+        y += 2;
+        doc.setDrawColor(220, 226, 234);
+        doc.line(x, y, 196, y);
+        y += 7;
+        titulo(t, 13);
+      }
+
+      titulo("Avaliação de iPhone - Upgrade", 18);
+      linha(`Data: ${new Date().toLocaleString("pt-BR")}`, 10);
+      linha(`Status: ${dados.aprovado && dados.valorAvaliado > 0 ? "Upgrade aprovado" : "Upgrade não aprovado"}`, 10, true);
+
+      secao("Dados principais");
+      linha(`Modelo de entrada: ${dados.modeloEntrada}`);
+      linha(`Valor de revenda base: ${formatarMoeda(dados.valorFornecedor)}`);
+      linha(`Modelo desejado: ${dados.modeloDesejado}`);
+      linha(`Valor do aparelho desejado: ${formatarMoeda(dados.valorNovo)}`);
+
+      secao("Condição do aparelho");
+      linha(`Bateria: ${dados.bateria || 0}%`);
+      linha(`Nota fiscal: ${dados.nota}`);
+      linha(`Já teve reparo: ${dados.reparo}`);
+      linha(`Possui caixa: ${dados.caixa}`);
+      linha(`Cor: ${dados.cor}`);
+      linha(`Avaria: ${dados.avaria}`);
+      linha(`Desvalorização padrão: ${dados.desval}`);
+
+      if (dados.fornecedorSelecionado) {
+        secao("Fornecedor selecionado");
+        linha(`Fornecedor: ${dados.fornecedorSelecionado.fornecedor}`);
+        linha(`Modelo localizado: ${dados.fornecedorSelecionado.modeloOriginal}`);
+        linha(`Valor original do fornecedor: ${formatarMoeda(dados.fornecedorSelecionado.valorOriginal)}`);
+        linha(`Revenda aplicada: ${formatarMoeda(dados.fornecedorSelecionado.valor)} (- ${formatarMoeda(AJUSTE_REVENDA_FORNECEDOR)})`);
+        if (dados.fornecedorSelecionado.bateria) linha(`Bateria encontrada: ${dados.fornecedorSelecionado.bateria}%`);
+        if (dados.fornecedorSelecionado.cores && dados.fornecedorSelecionado.cores.length) linha(`Cores encontradas: ${dados.fornecedorSelecionado.cores.join(", ")}`);
+        if (dados.fornecedorSelecionado.detalhes) linha(`Observações: ${dados.fornecedorSelecionado.detalhes}`);
+      }
+
+      secao("Descontos aplicados");
+      dados.descontos.forEach(item => linha(`${item.titulo}: ${item.valor > 0 ? "- " + formatarMoeda(item.valor) : formatarMoeda(0)} (${item.descricao})`));
+
+      secao("Resultado");
+      linha(`Total de descontos: ${formatarMoeda(dados.totalDescontos)}`, 11, true);
+      linha(`Valor avaliado final: ${formatarMoeda(dados.valorAvaliado)}`, 11, true);
+      linha(`Diferença / entrada: ${formatarMoeda(dados.diferenca)}`, 11, true);
+
+      secao("Mensagem enviada ao cliente");
+      linha(dados.mensagem, 10);
+
+      doc.save(`avaliacao-upgrade-${(dados.modeloEntrada || "iphone").replace(/[^\w\d]+/g, "-").toLowerCase()}.pdf`);
+    }
+
+    function limparTudo() {
+      modeloEntradaInput.value = "";
+      valorFornecedorInput.value = "";
+      bateriaInput.value = "";
+      notaInput.value = "Sim";
+      reparoInput.value = "Não";
+      caixaInput.value = "Sim";
+      corInput.value = "Preto";
+      avariaInput.value = "Sem avarias";
+      valorAvariaInput.value = "0";
+      desvalInput.value = "Sim";
+      modeloDesejadoInput.value = "";
+      valorNovoInput.value = "";
+      resultadoDiv.innerHTML = "";
+      opcoesCompativeis = [];
+      opcaoSelecionada = null;
+      opcoesEncontradasDiv.innerHTML = "";
+      opcoesEncontradasWrap.style.display = "none";
+      mostrarFornecedorSelecionado(null);
+      atualizarEstatisticas(ultimoParseTabela, []);
+      ultimaAvaliacao = null;
+    }
+
+    modeloEntradaInput.addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        analisarTabelaFornecedores();
+      }
+    });
+
+    ultimoParseTabela = parseTabelaFornecedores(TABELAS_FORNECEDORES_RAW);
+    atualizarEstatisticas(ultimoParseTabela, []);
+  </script>
 </body>
 </html>
