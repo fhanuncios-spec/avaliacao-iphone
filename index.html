@@ -1922,13 +1922,19 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
 
       const totalDescontos = descontos.reduce((acc, item) => acc + item.valor, 0);
       const diferenca = valorNovo - valorAvaliado;
+      const bateriaDescricao = bateria
+        ? `Bateria ${bateria}%`
+        : "Bateria não informada";
+      const caixaDescricao = caixa === "Não"
+        ? "Sem caixa"
+        : "Com caixa";
 
       const mensagem = `Olá, venho com uma boa notícia! 😊
 Seu aparelho foi aceito como parte do valor para adquirir seu novo iPhone conosco. ✅
 
 OFERTA UPGRADE 🔄
 
-DE ENTRADA: ${modeloEntrada}
+DE ENTRADA: ${modeloEntrada} — ${bateriaDescricao} — ${caixaDescricao}
 (valor avaliado: ${formatarMoeda(valorAvaliado)})
 
 AVARIA INFORMADA: ${avaria}
@@ -1937,7 +1943,7 @@ ${valorAvaria > 0 ? `(desconto adicional por avaria: ${formatarMoeda(valorAvaria
 DESEJA ADQUIRIR: ${modeloDesejado}
 (valor do desejado: ${formatarMoeda(valorNovo)})
 
-DIFERENÇA / ENTRADA: ${formatarMoeda(diferenca)}
+DIFERENÇA: ${formatarMoeda(diferenca)}
 -OFERTA VÁLIDA POR 1 DIA-`;
 
       return {
