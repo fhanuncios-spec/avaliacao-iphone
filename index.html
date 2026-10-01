@@ -873,7 +873,8 @@ const TABELAS_FORNECEDORES_RAW = `...`;
       "MANGA": 1,
       "IMPORTECH": 2,
       "SENA": 3,
-      "QUALITY": 4
+      "QUALITY": 4,
+      "TAQUARA": 5
     };
 
     /*
@@ -1294,7 +1295,8 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
       if (texto.includes("MANGA")) return "MANGA";
       if (texto.includes("IMPORTTECH") || texto.includes("IMPORTECH")) return "IMPORTECH";
       if (texto.includes("SENAPHONES") || texto.includes("SENA")) return "SENA";
-      if (texto.includes("ATACADO TAQUARA")) return "TAQUARA";
+      if (texto.includes("TAQUARA")) return "TAQUARA";
+      if (texto.includes("QUALITY") || texto.includes("QUALIDADE PREMIUM")) return "QUALITY";
       return "FORNECEDOR";
     }
 
@@ -1367,6 +1369,8 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
         /(?:r\$\s*)\d{3,5}(?:,\d{2})?/gi,
         /💰\s*(?:r\$\s*)?\d{1,3}(?:\.\d{3})*,\d{2}/gi,
         /💰\s*(?:r\$\s*)?\d{3,5}(?:,\d{2})?/gi,
+        /💵\s*(?:r\$\s*)?\d{1,3}(?:\.\d{3})*,\d{2}/gi,
+        /💵\s*(?:r\$\s*)?\d{1,3}(?:\.\d{3})*(?:,\d{2})?/gi,
         /[-—–]\s*(?:r\$\s*)\d{1,3}(?:\.\d{3})*,\d{2}/gi,
         /[-—–]\s*(?:r\$\s*)\d{3,5}(?:,\d{2})?/gi
       ];
@@ -1378,7 +1382,7 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
 
       const linhas = original.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
       for (let i = linhas.length - 1; i >= 0; i--) {
-        if (/💰|r\$/i.test(linhas[i])) return linhas[i];
+        if (/💰|💵|r\$/i.test(linhas[i])) return linhas[i];
       }
       return null;
     }
@@ -1398,7 +1402,26 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
     function extrairCores(texto) {
       const normal = normalizarTexto(texto);
       const mapa = ["preto","branco","azul","verde","rosa","lilas","roxo","gold","grafite","natural","desert","laranja","amarelo","vermelho","silver"];
-      return mapa.filter(cor => normal.includes(cor));
+      const cores = mapa.filter(cor => normal.includes(cor));
+      const emojis = [
+        ["🖤","preto"],["⚫","preto"],["⬛","preto"],
+        ["🤍","branco"],["⚪","branco"],["⬜","branco"],
+        ["💙","azul"],["🩵","azul"],["🔵","azul"],["🟦","azul"],
+        ["💚","verde"],["🟢","verde"],["🟩","verde"],
+        ["🩷","rosa"],["💜","roxo"],["🟣","roxo"],
+        ["❤️","vermelho"],["🔴","vermelho"],
+        ["💛","amarelo"],["🟡","amarelo"],["🟨","gold"],
+        ["🩶","grafite"],["🔘","natural"],["🌕","dourado"],
+        ["🧡","laranja"]
+      ];
+
+      emojis.forEach(([emoji,cor]) => {
+        if (String(texto || "").includes(emoji) && !cores.includes(cor)) {
+          cores.push(cor);
+        }
+      });
+
+      return cores;
     }
 
     function detectarFornecedorCabecalho(texto) {
@@ -1414,6 +1437,7 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
       if (alvo.includes("manga")) return "MANGA";
       if (alvo.includes("importtech") || alvo.includes("importech")) return "IMPORTECH";
       if (alvo.includes("senaphones") || alvo.includes("sena")) return "SENA";
+      if (alvo.includes("taquara")) return "TAQUARA";
       if (alvo.includes("quality")) return "QUALITY";
       return null;
     }
@@ -1423,6 +1447,8 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
 
       base = base
         .replace(/\biphone\b/g, " ")
+        .replace(/\b(11|12|13|14|15|16|17|18)e\b/g, "$1 e")
+        .replace(/\bpm\b/g, " pro max ")
         .replace(/\bgrade a\b/g, " ")
         .replace(/\bgrade ab\b/g, " ")
         .replace(/\bgrade\b/g, " ")
@@ -1449,7 +1475,7 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
         .replace(/\s+/g, " ")
         .trim();
 
-      const numeroMatch = base.match(/\b(11|12|13|14|15|16|17)\b/);
+      const numeroMatch = base.match(/\b(11|12|13|14|15|16|17|18)\b/);
       if (!numeroMatch) {
         return {
           numero: "",
@@ -1468,6 +1494,7 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
       else if (/\bpro\b/.test(base)) variante = "pro";
       else if (/\bmini\b/.test(base)) variante = "mini";
       else if (/\bmax\b/.test(base)) variante = "max";
+      else if (/\be\b/.test(base)) variante = "e";
 
       const capacidadeMatch = base.match(/\b(64gb|128gb|256gb|512gb|1tb)\b/);
       const capacidade = capacidadeMatch ? capacidadeMatch[1] : "";
@@ -1481,9 +1508,11 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
     function limparLinhaModeloComPreco(linha) {
       const trechoPreco = extrairTrechoPreco(linha);
       let limpa = String(linha || "")
+        .replace(/[\uFE0E\uFE0F]/g, "")
         .replace(/^📱\s*/, "")
         .replace(/^📲\s*/, "")
         .replace(/^📍\s*/, "")
+        .replace(/^[^\p{L}\p{N}]+/u, "")
         .trim();
 
       if (trechoPreco) limpa = limpa.replace(trechoPreco, " ").trim();
@@ -1524,108 +1553,120 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
 
       const registros = [];
       let fornecedorAtual = fornecedorPadrao;
-      let modeloAtual = "";
-      let bateriaAtual = null;
-      let coresAtuais = [];
-      let detalhesAtuais = "";
+      let blocoAtual = null;
 
-      function resetBloco() {
-        modeloAtual = "";
-        bateriaAtual = null;
-        coresAtuais = [];
-        detalhesAtuais = "";
+      function ehLinhaModelo(linha) {
+        const normal = normalizarTexto(linha)
+          .replace(/^iphone\s+/, "")
+          .trim();
+
+        return /^(11|12|13|14|15|16|17|18)(?:e\b|\b)(?:\s+(?:pro\s+max|pm|pro|plus|max|mini))?/i.test(normal);
       }
 
-      function salvarPorPreco(linhaPreco) {
-        const valorOriginal = extrairPreco(linhaPreco);
-        if (!modeloAtual || valorOriginal === null) return;
+      function adicionarCores(destino,novasCores) {
+        novasCores.forEach(cor => {
+          if (cor && !destino.includes(cor)) destino.push(cor);
+        });
+      }
 
-        registros.push(
-          criarRegistroFornecedor(
-            fornecedorAtual,
-            modeloAtual,
-            valorOriginal,
-            bateriaAtual,
-            [...coresAtuais],
-            detalhesAtuais.trim()
-          )
-        );
-        resetBloco();
+      function salvarBlocoAtual() {
+        if (!blocoAtual || !blocoAtual.modelo || !blocoAtual.linhas.length) {
+          blocoAtual = null;
+          return;
+        }
+
+        const gruposPorPreco = new Map();
+        const coresPendentes = [];
+        let precoAtivo = null;
+
+        function obterGrupo(valor) {
+          const chave = String(valor);
+          if (!gruposPorPreco.has(chave)) {
+            gruposPorPreco.set(chave, {
+              valor,
+              cores:[],
+              linhas:[]
+            });
+          }
+          return gruposPorPreco.get(chave);
+        }
+
+        blocoAtual.linhas.forEach((linha,index) => {
+          const valor = extrairPreco(linha);
+          const coresLinha = extrairCores(linha);
+
+          if (valor !== null) {
+            const grupo = obterGrupo(valor);
+            precoAtivo = String(valor);
+            adicionarCores(grupo.cores,coresLinha);
+
+            if (coresPendentes.length) {
+              adicionarCores(grupo.cores,coresPendentes);
+              coresPendentes.length = 0;
+            }
+
+            grupo.linhas.push(linha);
+            return;
+          }
+
+          if (coresLinha.length) {
+            if (precoAtivo && gruposPorPreco.has(precoAtivo)) {
+              adicionarCores(
+                gruposPorPreco.get(precoAtivo).cores,
+                coresLinha
+              );
+            } else {
+              adicionarCores(coresPendentes,coresLinha);
+            }
+          }
+        });
+
+        const textoBloco = blocoAtual.linhas.join(" ");
+        const bateria = extrairBateriaLinha(textoBloco);
+        const detalhes = (
+          (textoBloco.match(/\(([^)]*)\)/g) || []).join(" ") || ""
+        ).trim();
+
+        gruposPorPreco.forEach(grupo => {
+          registros.push(
+            criarRegistroFornecedor(
+              blocoAtual.fornecedor,
+              blocoAtual.modelo,
+              grupo.valor,
+              bateria,
+              grupo.cores,
+              detalhes
+            )
+          );
+        });
+
+        blocoAtual = null;
       }
 
       for (const linha of linhas) {
         const fornecedorDetectado = detectarFornecedorCabecalho(linha);
         if (fornecedorDetectado) {
+          salvarBlocoAtual();
           fornecedorAtual = fornecedorDetectado;
           continue;
         }
 
-        const linhaNormal = normalizarTexto(linha);
-
-        const ehModeloLinha =
-          /^📱/.test(linha) ||
-          /^📲/.test(linha) ||
-          /^📍/.test(linha) ||
-          /^\s*iphone\s/i.test(linhaNormal) ||
-          /^\s*(11|12|13|14|15|16|17)\s*(pro max|pro|plus|max|mini)?/i.test(linhaNormal);
-
-        const ehPrecoLinha =
-          /💰/i.test(linha) ||
-          /r\$\s*[\d.,]+/i.test(linha);
-
-        if (ehModeloLinha && ehPrecoLinha) {
-          const valorOriginal = extrairPreco(linha);
-          const modeloLimpo = limparLinhaModeloComPreco(linha);
-
-          if (valorOriginal !== null) {
-            registros.push(
-              criarRegistroFornecedor(
-                fornecedorAtual,
-                modeloLimpo,
-                valorOriginal,
-                extrairBateriaLinha(linha),
-                extrairCores(linha),
-                ((linha.match(/\(([^)]*)\)/g) || []).join(" ") || "").trim()
-              )
-            );
-          }
+        if (ehLinhaModelo(linha)) {
+          salvarBlocoAtual();
+          blocoAtual = {
+            fornecedor:fornecedorAtual,
+            modelo:limparLinhaModeloComPreco(linha),
+            linhas:[linha]
+          };
           continue;
         }
 
-        if (ehModeloLinha) {
-          modeloAtual = linha
-            .replace(/^📱\s*/, "")
-            .replace(/^📲\s*/, "")
-            .replace(/^📍\s*/, "")
-            .trim();
-
-          const bat = extrairBateriaLinha(linha);
-          if (bat !== null) bateriaAtual = bat;
-
-          const cors = extrairCores(linha);
-          if (cors.length) coresAtuais.push(...cors.filter(c => !coresAtuais.includes(c)));
-
-          const detalhes = ((linha.match(/\(([^)]*)\)/g) || []).join(" ") || "").trim();
-          if (detalhes) detalhesAtuais = (detalhesAtuais + " " + detalhes).trim();
-          continue;
-        }
-
-        if (ehPrecoLinha) {
-          salvarPorPreco(linha);
-          continue;
-        }
-
-        if (modeloAtual) {
-          const bat = extrairBateriaLinha(linha);
-          if (bat !== null) bateriaAtual = bat;
-
-          const cors = extrairCores(linha);
-          if (cors.length) coresAtuais.push(...cors.filter(c => !coresAtuais.includes(c)));
-
-          const detalhes = ((linha.match(/\(([^)]*)\)/g) || []).join(" ") || "").trim();
-          if (detalhes) detalhesAtuais = (detalhesAtuais + " " + detalhes).trim();
+        if (blocoAtual) {
+          blocoAtual.linhas.push(linha);
         }
       }
+
+      salvarBlocoAtual();
 
       return registros.filter(r => r.modeloInfo.numero && r.valor >= 0);
     }
@@ -1674,8 +1715,7 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
 
     function parseTabelaFornecedores(texto) {
       const registrosA = parseLinhasEstruturadas(texto, "FORNECEDOR");
-      const registrosB = parsePorBlocosDeTexto(texto, "FORNECEDOR");
-      const todos = [...registrosA, ...registrosB];
+      const todos = [...registrosA];
       const mapa = new Map();
 
       for (const item of todos) {
