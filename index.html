@@ -748,6 +748,52 @@ body{background:#f6f6f6!important;color:#171717!important}
 .selected-badge{background:#ecfdf3!important;color:#17643a!important}
 @media(max-width:680px){.promo-panel{max-height:300px!important}.promo-image{height:300px!important;object-position:center 28%!important}}
 
+
+/* ===== VERSÃO RESPONSIVA: BANNER HORIZONTAL NO TOPO ===== */
+body{background:#f6f7f9!important;color:#151515!important;padding:14px!important}
+.app-shell{max-width:1380px!important;margin:auto}
+.topbar{box-shadow:none!important;border:1px solid #e5e5e5!important}
+.dashboard{display:grid!important;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr)!important;gap:16px!important}
+.form-stack,.results-stack{min-width:0}
+.promo-panel{position:relative!important;inset:auto!important;grid-column:auto!important;grid-row:auto!important;max-height:none!important;overflow:hidden!important;border-radius:22px!important;margin-bottom:16px!important;min-height:250px!important;aspect-ratio:1600/530!important;background:#090b0e!important}
+.promo-image{display:block!important;width:100%!important;height:100%!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:center!important;position:absolute!important;inset:0!important}
+.promo-copy{position:relative;z-index:2;color:#fff;padding:clamp(24px,4vw,60px);width:55%;min-height:250px;display:flex;flex-direction:column;justify-content:center}
+.promo-kicker{color:#c0c5cc;letter-spacing:2.2px;font-size:clamp(10px,1.1vw,13px);font-weight:800}
+.promo-copy h2{font-size:clamp(24px,3.8vw,56px);line-height:1.02;letter-spacing:-1.5px;margin:12px 0 15px;font-weight:950}
+.promo-copy p{font-size:clamp(12px,1.35vw,17px);line-height:1.4;color:#d6d8dd;margin:0;max-width:420px}
+.panel{border:1px solid #e6e7e9!important;box-shadow:0 5px 18px #00000007!important}
+.panel-icon.blue-icon,.panel-icon.violet-icon,.panel-icon.pink-icon{background:#f0f0f0!important;color:#141414!important}
+.panel-icon.green-icon{background:#def6e9!important;color:#087c43!important}
+.btn-primary{background:#111!important;color:white!important}
+.btn-blue,.btn-purple{background:#181818!important;color:#fff!important}
+.btn-green{background:#087d43!important;color:white!important}
+.panel input:focus,.panel select:focus{border-color:#171717!important;outline:2px solid #dddddd!important}
+.purple-tint,.profit-panel{background:#fff!important;border-color:#e5e5e5!important}
+.card-preview-viewport{width:100%;max-width:720px;position:relative;overflow:hidden;margin:16px auto 0;border-radius:20px}
+.client-card-square{box-sizing:border-box!important;width:720px!important;height:720px!important;min-width:720px!important;max-width:none!important;min-height:720px!important;border-radius:20px!important;background:#090b0e!important;padding:0!important;position:relative!important;overflow:hidden!important;display:block!important;transform-origin:top left!important;box-shadow:none!important;font-family:Arial,sans-serif!important}
+.client-card-square::before{display:none!important}
+.client-card-square .square-art{width:100%;height:100%;position:absolute;left:0;top:0;object-fit:cover;z-index:0}
+.square-head{position:absolute;z-index:1;left:38px;top:30px;display:flex;flex-direction:column;gap:10px;color:white}
+.square-head span{font-size:14px;letter-spacing:2.5px;font-weight:800;color:#cfd2d5}
+.square-head strong{font-size:33px;line-height:1.08;letter-spacing:-1px}
+.square-columns{position:absolute;z-index:2;left:30px;right:30px;top:438px;display:grid;grid-template-columns:1fr 86px 1fr;gap:6px;align-items:center}
+.square-device{border-radius:17px;border:2px solid;padding:14px 12px;min-height:126px;display:flex;flex-direction:column;justify-content:space-between;backdrop-filter:blur(14px);color:#fff;min-width:0}
+.square-device.old{border-color:#ef5555;background:rgba(82,15,15,.82)}
+.square-device.new{border-color:#33cb82;background:rgba(9,74,44,.85)}
+.square-label{font-size:11px;letter-spacing:.7px;font-weight:850}
+.square-device strong{font-size:19px;line-height:1.1;overflow-wrap:anywhere;margin:8px 0}
+.square-device .square-amount{font-size:25px;font-weight:950;white-space:nowrap}
+.square-device.old .square-amount{color:#ffd8d8}.square-device.new .square-amount{color:#baffd6}
+.square-exchange{text-align:center;color:#fff;display:flex;flex-direction:column;gap:3px;align-items:center;text-shadow:0 2px 9px #000}
+.square-exchange span{font-size:68px;line-height:1;color:#fff}.square-exchange small{font-weight:800;font-size:10px;letter-spacing:2px}
+.square-bottom{z-index:2;position:absolute;left:30px;right:30px;bottom:42px;display:flex;justify-content:space-between;align-items:center;gap:14px;border:1px solid #ffffff45;border-radius:15px;padding:12px 18px;background:rgba(8,10,13,.88)}
+.square-bottom div{display:flex;flex-direction:column;gap:5px}.square-bottom small{font-size:11px;font-weight:800;letter-spacing:1px;color:#c7cdd3}.square-bottom strong{font-size:29px;color:#fff}
+.square-check{white-space:nowrap;background:#0b7044;color:#e2ffed;padding:9px 12px;border-radius:25px;font-size:11px;font-weight:850}
+.square-footer{position:absolute;bottom:11px;left:30px;right:30px;text-align:center;color:#bfc4cb;font-size:10px;letter-spacing:.2px;z-index:3}
+@media(max-width:960px){.dashboard{grid-template-columns:1fr!important}.promo-panel{min-height:220px!important}.promo-copy{min-height:220px}.results-stack{grid-column:auto!important;grid-row:auto!important}.form-stack{width:100%!important}}
+@media(max-width:600px){body{padding:8px!important}.topbar{padding:12px!important;border-radius:15px!important;margin-bottom:10px!important}.brand-text h1{font-size:20px!important}.brand-text p{font-size:12px!important}.promo-panel{aspect-ratio:1.85!important;min-height:170px!important;margin-bottom:10px!important;border-radius:16px!important}.promo-copy{padding:16px!important;width:58%;min-height:170px!important}.promo-copy h2{font-size:clamp(17px,5.2vw,28px)!important;letter-spacing:-.5px!important;margin:7px 0!important}.promo-copy p{font-size:11px!important;line-height:1.25!important}.promo-kicker{font-size:9px!important;letter-spacing:1px!important}.promo-image{object-position:60% center!important}.dashboard{gap:10px!important}.form-stack,.results-stack{gap:10px!important}.panel{padding:13px!important;border-radius:15px!important}.inline-grid{grid-template-columns:1fr 1fr!important;gap:8px!important}.panel input,.panel select{font-size:16px!important;min-width:0!important}.panel-heading h2{font-size:15px!important}.panel-icon{height:40px!important;width:40px!important;font-size:21px!important}.form-actions{grid-template-columns:1fr 1fr!important}.form-actions button{font-size:12px!important}.profit-row{font-size:11px!important}.profit-row strong{font-size:11px!important}.profit-total strong{font-size:20px!important}}
+@media(max-width:375px){.inline-grid{grid-template-columns:1fr!important}.promo-copy p{display:none}.promo-copy h2{font-size:20px!important}}
+
 </style>
 </head>
 <body>
@@ -757,10 +803,11 @@ body{background:#f6f6f6!important;color:#171717!important}
   <div class="brand-text"><h1>Avaliação de iPhone <span>— Upgrade</span></h1><p>Calcule o valor do aparelho do cliente na troca por um novo iPhone.</p></div>
 
 </header>
-<div class="dashboard">
-  <aside class="promo-panel" aria-label="Campanha de upgrade">
-    <img class="promo-image" src="banner_upgrade.png" alt="Seu iPhone vale mais aqui: ilustração de dois iPhones em uma troca" />
-  </aside>
+<section class="promo-panel" aria-label="Campanha de upgrade">
+    <img class="promo-image" src="banner_upgrade.png" alt="Dois iPhones ilustrando uma troca de aparelho" />
+    <div class="promo-copy"><span class="promo-kicker">AVALIAÇÃO DE UPGRADE</span><h2>TROQUE SEU iPHONE<br>POR UM NOVO</h2><p>Seu usado vale como entrada. Pague apenas a diferença.</p></div>
+  </section>
+  <div class="dashboard">
   <main class="form-stack">
     <section class="panel" id="dadosCliente">
       <div class="panel-heading"><div class="panel-icon blue-icon">▣</div><div><h2>Dados do iPhone do cliente</h2><p>Encontre na tabela o modelo e o valor de referência.</p></div></div>
@@ -2017,62 +2064,17 @@ ${dados.fornecedorSelecionado.detalhes ? `Observações: ${dados.fornecedorSelec
           </div>
 
           <div class="client-card-wrap">
-            <div id="clientCard" class="client-card">
-              <div class="client-card-top">
-                <div class="client-brand">AVALIAÇÃO DE UPGRADE</div>
-                <div class="client-badge">🔥 OFERTA VÁLIDA HOJE</div>
-              </div>
-
-              <div class="client-title">🎉 Seu aparelho foi aprovado na avaliação!</div>
-              <div class="client-subtitle">
-                Você já pode usar o seu iPhone como parte do pagamento do novo aparelho. Aproveite essa oportunidade e garanta sua troca com condição especial. 🚀✨
-              </div>
-
-              <img class="trade-photo" alt="Dois iPhones e setas verdes ilustrando a troca de aparelho" src="arte_troca_iphones.png" />
-
-              <div class="client-highlight-grid">
-                <div class="client-highlight">
-                  <small>💎 valor do seu aparelho</small>
-                  <strong>${formatarMoeda(dados.valorAvaliado)}</strong>
+            <div class="card-preview-viewport" id="cardPreviewViewport">
+              <div id="clientCard" class="client-card client-card-square">
+                <img class="square-art" src="arte_troca_iphones.png" alt="Imagem dos iPhones sendo trocados" crossorigin="anonymous" />
+                <div class="square-head"><span>PROPOSTA DE UPGRADE</span><strong>Seu próximo iPhone está aqui.</strong></div>
+                <div class="square-columns">
+                  <div class="square-device old"><span class="square-label">SEU iPHONE • ENTRADA</span><strong>${escapeHtml(dados.modeloEntrada)}</strong><span class="square-amount">${formatarMoeda(dados.valorAvaliado)}</span></div>
+                  <div class="square-exchange" aria-hidden="true"><span>➜</span><small>TROCA</small></div>
+                  <div class="square-device new"><span class="square-label">NOVO iPHONE • DESEJADO</span><strong>${escapeHtml(dados.modeloDesejado)}</strong><span class="square-amount">${formatarMoeda(dados.valorNovo)}</span></div>
                 </div>
-                <div class="client-highlight">
-                  <small>🛍️ valor do desejado</small>
-                  <strong>${formatarMoeda(dados.valorNovo)}</strong>
-                </div>
-                <div class="client-highlight">
-                  <small>💸 diferença final</small>
-                  <strong>${formatarMoeda(dados.diferenca)}</strong>
-                </div>
-              </div>
-
-              <div class="client-models">
-                <div class="client-model-box">
-                  <small>📱 seu aparelho</small>
-                  <strong>${dados.modeloEntrada}</strong>
-                </div>
-                <div class="client-model-box">
-                  <small>✨ modelo desejado</small>
-                  <strong>${dados.modeloDesejado}</strong>
-                </div>
-              </div>
-
-              <div class="client-triggers">
-                <span class="pill">⚡ condição especial</span>
-                <span class="pill">⏳ avaliação com prazo</span>
-                <span class="pill">🔒 reserva mediante confirmação</span>
-                <span class="pill">💙 upgrade facilitado</span>
-              </div>
-
-              <div class="client-bottom">
-                <div class="client-copy">
-                  ✅ Avaliação aprovada<br>
-                  📌 Oferta sujeita à disponibilidade do estoque<br>
-                  ⏰ Quanto antes confirmar, maior a chance de garantir essa condição
-                </div>
-                <div class="client-cta">
-                  CHAME AGORA 💬<br>
-                  E GARANTA O SEU
-                </div>
+                <div class="square-bottom"><div><small>VOCÊ PAGA APENAS A DIFERENÇA</small><strong>${formatarMoeda(dados.diferenca)}</strong></div><span class="square-check">✓ AVALIAÇÃO APROVADA</span></div>
+                <div class="square-footer">Proposta sujeita à avaliação presencial e disponibilidade de estoque. Válida por 1 dia.</div>
               </div>
             </div>
 
@@ -2084,7 +2086,23 @@ ${dados.fornecedorSelecionado.detalhes ? `Observações: ${dados.fornecedorSelec
           </div>
         </div>
       `;
+      ajustarPreview();
     }
+
+    function escapeHtml(texto) {
+      return String(texto ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    }
+
+    function ajustarPreview() {
+      const viewport = document.getElementById("cardPreviewViewport");
+      const card = document.getElementById("clientCard");
+      if (!viewport || !card) return;
+      const largura = 720;
+      const escala = Math.min(1, viewport.clientWidth / largura);
+      card.style.transform = `scale(${escala})`;
+      viewport.style.height = `${720 * escala}px`;
+    }
+    window.addEventListener("resize", ajustarPreview);
 
     function copiar() {
       const msg = document.getElementById("msg");
@@ -2107,13 +2125,14 @@ ${dados.fornecedorSelecionado.detalhes ? `Observações: ${dados.fornecedorSelec
         alert("A biblioteca de imagens não carregou. Confira a conexão e recarregue a página.");
         return null;
       }
-      const canvas = await html2canvas(card, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: null
-      });
+      const transformAnterior = card.style.transform;
+      card.style.transform = "none";
+      try {
+        await Promise.all(Array.from(card.querySelectorAll("img")).map(img => img.complete ? Promise.resolve() : new Promise(resolve => {img.addEventListener("load",resolve,{once:true});img.addEventListener("error",resolve,{once:true});setTimeout(resolve,2500);} )));
+        const canvas = await html2canvas(card, {scale: 2, useCORS: true, backgroundColor: "#0b0d10", width:720, height:720, windowWidth: Math.max(window.innerWidth, 850)});
+        return await new Promise(resolve => canvas.toBlob(resolve, "image/png", 1));
+      } finally {card.style.transform = transformAnterior;}
 
-      return await new Promise(resolve => canvas.toBlob(resolve, "image/png", 1));
     }
 
     async function baixarImagemAvaliacao() {
