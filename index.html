@@ -683,188 +683,112 @@
       .main-card { border: none; box-shadow: none; }
       .no-print { display: none !important; }
     }
-  </style>
+
+    /* Ilustração de upgrade integrada à arte exportada */
+    .trade-visual { display:flex; align-items:center; justify-content:center; gap:clamp(10px,3vw,28px); margin:20px auto 8px; min-height:185px; position:relative; z-index:1; }
+    .phone { width:100px; height:175px; border:5px solid #162238; border-radius:24px; position:relative; flex-shrink:0; box-shadow:12px 15px 26px rgba(0,0,0,.28),inset 0 0 0 2px rgba(255,255,255,.3); overflow:hidden; }
+    .phone span { position:absolute; bottom:15px; left:4px; right:4px; text-align:center; color:#fff; font-size:10px; font-weight:900; letter-spacing:.7px; text-shadow:0 2px 6px rgba(0,0,0,.65); z-index:2; }
+    .phone-old { transform:rotate(-10deg); background:linear-gradient(145deg,#8c9aaa,#2c394c 65%,#121e31); }
+    .phone-cameras { position:absolute; left:9px; top:10px; width:50px; height:57px; background:rgba(15,23,42,.42); border-radius:14px; }
+    .phone-cameras i { position:absolute; width:20px; height:20px; border:4px solid #5a718c; border-radius:50%; background:#071121; }
+    .phone-cameras i:nth-child(1){left:5px;top:4px}.phone-cameras i:nth-child(2){right:4px;top:18px}.phone-cameras i:nth-child(3){left:5px;bottom:4px}
+    .phone-new { transform:rotate(9deg); border-color:#e0dce8; background:linear-gradient(125deg,#120b2e,#673dc7 42%,#f3a7cb 75%,#a7dffd); }
+    .phone-island {position:absolute;top:8px;left:27px;width:36px;height:10px;border-radius:12px;background:#121323;z-index:1}
+    .phone-glow {position:absolute;width:125px;height:125px;border:22px solid rgba(255,255,255,.23);border-radius:50%;left:-15px;top:23px;box-shadow:0 0 40px #bd9aff}
+    .swap-symbol {font-weight:900;font-size:64px;line-height:.7;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.3);text-align:center;display:flex;flex-direction:column;gap:17px;}
+    .swap-symbol small {font-size:11px;letter-spacing:2px;background:rgba(255,255,255,.18);padding:8px;border-radius:30px}
+    @media(max-width:420px){.phone{width:78px;height:140px;border-radius:19px}.trade-visual{min-height:155px;gap:10px}.swap-symbol{font-size:44px}.phone-cameras{transform:scale(.76);transform-origin:top left}}
+
+  
+/* Painel visual 3 colunas */
+body{margin:0;padding:14px;background:#f2f6fc;color:#10182c;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+.app-shell{max-width:1650px;margin:auto}.topbar{display:flex;align-items:center;gap:20px;background:#fff;border-radius:22px;padding:20px 24px;margin-bottom:18px;box-shadow:0 5px 24px #12234a10;border:1px solid #e5eaf3}
+.brand-icon{width:66px;height:66px;display:grid;place-items:center;background:linear-gradient(135deg,#15264c,#03050f);font-size:46px;color:#fff;border-radius:20px;flex-shrink:0}
+.brand-text{flex:1}.brand-text h1{font-size:clamp(22px,2.4vw,34px);line-height:1.15;letter-spacing:-.8px;margin:0 0 8px}.brand-text h1 span{font-weight:600}.brand-text p{margin:0;font-size:14px;color:#71809b}.store-tag{display:flex;gap:12px;align-items:center;background:#f7f9fe;border:1px solid #dee6f4;border-radius:16px;padding:10px 16px}.store-tag strong,.store-tag small{display:block}.store-tag small{font-size:11px;color:#71809b}.store-tag strong{font-size:14px}.store-icon{font-size:30px;color:#ae31b8}
+.dashboard{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(370px,1.55fr) minmax(350px,1.25fr);gap:16px;align-items:start}.promo-panel{border-radius:22px;overflow:hidden;position:sticky;top:14px;background:#071227;box-shadow:0 9px 25px #12234a17}.promo-image{width:100%;display:block;aspect-ratio:383 / 1024;object-fit:cover}
+.form-stack,.results-stack{display:grid;gap:15px;min-width:0}.panel{background:#fff;border:1px solid #dde6f1;box-shadow:0 6px 22px #142b4c0b;padding:20px;border-radius:20px}.panel-heading{display:flex;align-items:center;gap:13px;margin-bottom:13px}.panel-heading h2{font-size:17px;margin:0 0 5px;font-weight:850}.panel-heading p{font-size:12px;margin:0;color:#72819b;line-height:1.5}.panel-icon{height:48px;width:48px;flex-shrink:0;display:grid;place-items:center;font-size:25px;border-radius:14px;font-weight:900}.blue-icon{background:#e4efff;color:#0873e7}.green-icon{background:#d9f7e9;color:#008c56}.violet-icon{background:#eee3ff;color:#7936d7}.pink-icon{background:#ffe2ed;color:#d91c62}.panel label{font-weight:750;font-size:13px;color:#1e2c47;margin:12px 0 6px}.panel input,.panel select{margin:0;padding:12px;border-radius:11px;width:100%;height:45px;border:1px solid #d8e0ed;background:#fff;color:#17243d;box-shadow:none}.panel input:focus,.panel select:focus{border-color:#0877ef;outline:2px solid #cbe4ff}.inline-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.eye-row{display:flex;gap:6px}.eye-button{width:49px;flex-shrink:0;border-radius:12px;background:#e7efff;color:#165abd;padding:0}.search-button-wrap{display:flex;align-items:end}.btn-primary,.btn-light{padding:12px 14px;border-radius:12px;font-size:14px;min-height:45px}.btn-primary{background:linear-gradient(130deg,#0c85ff,#075ac6);color:#fff}.btn-light{background:#eaf0f7;color:#27344d}.form-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form-actions button{width:100%}.purple-tint{background:linear-gradient(135deg,#fff,#f8f3ff)}.hint{font-size:12px!important;line-height:1.55!important;color:#75839a!important;margin:9px 0 0}.supplier-details{margin-top:15px;font-size:12px;color:#66768e}.supplier-details summary{cursor:pointer;font-weight:750;color:#33577b}.supplier-details .stats{grid-template-columns:repeat(2,1fr);gap:8px}.supplier-details .stat{padding:9px}.supplier-details .stat strong{font-size:15px}.found-box{font-size:12px}.option-card{padding:12px}.option-price{font-size:20px}.option-card .option-model{font-size:13px}.option-card .tag{padding:5px 7px;font-size:11px}
+.highlight-money{background:linear-gradient(145deg,#dcfaea,#ecfff5);padding:22px;border:1px solid #9cecc4;border-radius:16px;display:grid;gap:10px}.highlight-money small{font-size:13px;font-weight:750}.highlight-money strong{font-size:clamp(30px,4vw,43px);color:#006a3d;letter-spacing:-1px}.profit-panel{background:linear-gradient(140deg,#fff,#fff8fc);border-color:#f4d7e3}.profit-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 6px;border-bottom:1px solid #e9dfe7;font-size:12px}.profit-row strong{font-size:13px;white-space:nowrap}.profit-total{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 12px;background:#dcf9eb;border-radius:12px;margin-top:10px;color:#075b39;font-size:13px;font-weight:850}.profit-total strong{font-size:23px;white-space:nowrap}.empty-state{padding:17px;border:1px dashed #c8d6e9;background:#f8fafe;border-radius:12px;color:#7a859b;font-size:13px;line-height:1.6}.results-stack .result-box{padding:0;box-shadow:none;border:none;border-radius:0;background:transparent}.results-stack .result-title{font-size:19px}.results-stack .summary-grid{grid-template-columns:1fr 1fr;gap:8px}.results-stack .summary-card{padding:10px;background:#f8faff}.results-stack .summary-value{font-size:16px}.results-stack .summary-label{font-size:10px}.results-stack .discount-item{padding:9px 11px}.results-stack .discount-name{font-size:12px}.results-stack .discount-desc{font-size:11px}.results-stack .message-box{padding:12px}.client-card{padding:16px;border-radius:18px}.client-title{font-size:22px}.client-highlight-grid{grid-template-columns:1fr 1fr;gap:8px}.client-highlight{padding:10px}.client-highlight strong{font-size:16px}.client-models{grid-template-columns:1fr 1fr;gap:8px}.client-model-box strong{font-size:13px}.client-actions{grid-template-columns:1fr;gap:8px}.client-actions button{font-size:12px;padding:11px}.client-bottom{flex-wrap:wrap}.client-copy{max-width:100%}.client-cta{text-align:left}.trade-photo{display:block;margin:18px auto 6px;max-height:240px;width:100%;object-fit:cover;border-radius:18px;border:1px solid rgba(255,255,255,.28)}.app-footer{text-align:center;font-size:12px;color:#8994a5;padding:22px}.results-stack .message-box pre{font-size:12px}
+@media(max-width:1200px){.dashboard{grid-template-columns:minmax(185px,.7fr) minmax(340px,1.35fr) minmax(300px,1fr);gap:10px}.panel{padding:14px}.topbar{padding:14px}}
+@media(max-width:980px){.dashboard{grid-template-columns:minmax(200px,1fr) minmax(340px,1.7fr)}.results-stack{grid-column:2}.promo-panel{grid-row:1 / span 2}.store-tag{display:none}}
+@media(max-width:680px){.dashboard{display:flex;flex-direction:column}.promo-panel{position:relative;width:100%;max-height:320px}.promo-image{height:320px;aspect-ratio:auto;object-fit:cover;object-position:top}.form-stack,.results-stack{width:100%}.topbar{padding:13px;gap:10px}.brand-icon{width:48px;height:48px;font-size:30px}.brand-text h1{font-size:21px}.brand-text p{font-size:12px}.inline-grid{grid-template-columns:1fr}.form-actions{grid-template-columns:1fr 1fr}.panel{padding:16px}.results-stack .summary-grid{grid-template-columns:1fr 1fr}}
+
+
+
+/* ===== TEMA CLEAN P&B ===== */
+:root{--bg:#f5f5f5;--text:#151515;--muted:#737373;--border:#e5e5e5;--blue:#171717;--blue-soft:#f7f7f7;--green:#15803d;--green-soft:#effaf3;--purple:#171717;--purple-soft:#fafafa}
+body{background:#f6f6f6!important;color:#171717!important}
+.topbar,.panel{border-color:#e7e7e7!important;box-shadow:0 5px 18px rgba(0,0,0,.035)!important;background:#fff!important}
+.topbar{border-radius:20px}.panel{border-radius:18px}
+.brand-text h1,.panel-heading h2{color:#111!important}
+.brand-text p,.panel-heading p,.hint,.panel label{color:#626262!important}
+.panel-icon,.blue-icon,.violet-icon,.pink-icon{background:#f0f0f0!important;color:#161616!important}
+.green-icon{background:#e7f8ed!important;color:#147a3b!important}
+.panel input,.panel select{border-color:#d8d8d8!important;color:#161616!important}
+.panel input:focus,.panel select:focus{border-color:#1a1a1a!important;outline:2px solid #eee!important}
+.btn-primary,.btn-dark,.btn-blue,.btn-purple,.btn-orange{background:#141414!important;color:#fff!important}
+.btn-light,.btn-gray{background:#f0f0f0!important;color:#202020!important}
+.eye-button{background:#f1f1f1!important;color:#222!important}
+.purple-tint,.profit-panel,.results-stack .summary-card{background:#fff!important;border-color:#e6e6e6!important}
+.highlight-money,.profit-total{background:#eaf9ee!important;border-color:#b7e8c5!important;color:#126435!important}
+.highlight-money strong{color:#116735!important}.profit-row{border-color:#e9e9e9!important}
+.result-box.approved{background:#f0fff5!important;border-color:#bce9cc!important}
+.result-box.reproved{background:#fff2f2!important;border-color:#ffcece!important}
+.result-box.reproved .result-title{color:#b91c1c!important}
+.discount-value.neg{color:#c62828!important}.discount-value.zero{color:#737373!important}
+.tag{background:#f1f1f1!important;color:#262626!important}
+.option-card,.mini-box,.found-box,.stat{background:#fff!important;border-color:#e5e5e5!important}
+.client-card{background:linear-gradient(125deg,#111,#303030)!important;color:#fff!important}
+.client-highlight,.client-model-box{background:#ffffff16!important}
+.client-triggers .pill{background:#ffffff17!important;color:#fff!important}
+.client-card .client-title{color:#fff!important}
+.client-card .client-highlight strong,.client-card .client-model-box strong{color:#fff!important}
+.trade-photo{object-fit:cover;object-position:center;border-radius:16px!important}
+.promo-panel{background:#080808!important;box-shadow:0 7px 24px #00000012!important}
+.supplier-details summary{color:#333!important}
+.selected-badge{background:#ecfdf3!important;color:#17643a!important}
+@media(max-width:680px){.promo-panel{max-height:300px!important}.promo-image{height:300px!important;object-position:center 28%!important}}
+
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="main-card">
-      <div class="header">
-        <div>
-          <h1>📱 Avaliação de iPhone</h1>
-          <p>Busca exata por modelo e tabelas de fornecedores embutidas direto no código, com desconto automático de R$ 500,00 na revenda.</p>
-        </div>
-        <div class="badge">✨ Atualizado</div>
-      </div>
+<div class="app-shell">
+<header class="topbar">
+  
+  <div class="brand-text"><h1>Avaliação de iPhone <span>— Upgrade</span></h1><p>Calcule o valor do aparelho do cliente na troca por um novo iPhone.</p></div>
 
-      <div class="grid">
-        <div class="section blue">
-          <h2>📦 Aparelho de entrada</h2>
-
-          <label for="modeloEntrada">Modelo de Entrada</label>
-          <input id="modeloEntrada" placeholder="Ex: iPhone 14 ou iPhone 14 Pro 256GB" />
-
-          <label for="valorFornecedor">Revenda (R$)</label>
-          <div style="display:flex; gap:8px;">
-            <input id="valorFornecedor" type="password" inputmode="decimal" autocomplete="off" placeholder="Ex: 4049" />
-            <button type="button" class="toggle-olho" style="width:58px;min-width:58px;background:#fff;cursor:pointer;font-size:20px;" onclick="toggleFornecedor()">👁</button>
-          </div>
-
-          <div id="selectedOptionBadge" style="display:none;"></div>
-          <div id="fornecedorEncontrado" class="found-box" style="display:none;"></div>
-
-          <div id="opcoesEncontradasWrap" style="display:none;">
-            <label style="margin-top:14px;">🏪 Opções encontradas para escolher</label>
-            <div id="opcoesEncontradas" class="options-list"></div>
-          </div>
-        </div>
-
-        <div class="section purple">
-          <h2>🏷️ Tabelas de fornecedores no código</h2>
-          <p class="section-desc">
-            Agora as tabelas ficam <strong>direto no JavaScript</strong>. Você só precisa atualizar o bloco
-            <strong>TABELAS_FORNECEDORES_RAW</strong> dentro do código todos os dias.
-          </p>
-
-          <div class="actions-2">
-            <button type="button" class="btn-purple" onclick="analisarTabelaFornecedores()">🔎 Procurar opções</button>
-            <button type="button" class="btn-gray" onclick="recarregarBaseFornecedores()">🔄 Recarregar base do código</button>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <small>Registros</small>
-              <strong id="totalRegistros">0</strong>
-            </div>
-            <div class="stat">
-              <small>Fornecedores</small>
-              <strong id="totalFornecedores">0</strong>
-            </div>
-            <div class="stat">
-              <small>Compatíveis</small>
-              <strong id="totalCompativeis">0</strong>
-            </div>
-            <div class="stat">
-              <small>Menor revenda</small>
-              <strong id="menorValor">R$ 0,00</strong>
-            </div>
-          </div>
-
-          <div class="mini-box">
-            <strong>Busca exata aplicada:</strong><br>
-            se você pesquisar <strong>iPhone 14</strong>, vão aparecer apenas os <strong>iPhones 14</strong> da tabela.<br>
-            Não vai misturar com <strong>14 Plus</strong>, <strong>14 Pro</strong> ou <strong>14 Pro Max</strong>.<br><br>
-            Se pesquisar <strong>iPhone 14 Pro</strong>, vai mostrar somente <strong>14 Pro</strong>.<br>
-            Se informar capacidade, como <strong>256GB</strong>, o filtro também respeita isso.
-          </div>
-
-          <div class="code-place">PROCURE NO JAVASCRIPT POR:
-const TABELAS_FORNECEDORES_RAW = `...`;
-
-É NESSE BLOCO QUE VOCÊ VAI COLAR AS TABELAS DIARIAMENTE.</div>
-        </div>
-
-        <div class="section green">
-          <h2>🔋 Estado e procedência</h2>
-
-          <label for="bateria">Saúde da bateria (%)</label>
-          <input id="bateria" type="number" placeholder="Ex: 88" />
-
-          <label for="nota">🧾 Possui nota fiscal?</label>
-          <select id="nota">
-            <option>Sim</option>
-            <option>Não</option>
-          </select>
-
-          <label for="reparo">🛠️ Já teve reparo?</label>
-          <select id="reparo">
-            <option>Não</option>
-            <option>Sim</option>
-          </select>
-
-          <label for="caixa">📦 Possui caixa?</label>
-          <select id="caixa">
-            <option>Sim</option>
-            <option>Não</option>
-          </select>
-        </div>
-
-        <div class="section yellow">
-          <h2>🎨 Aparência e ajustes</h2>
-
-          <label for="cor">🌈 Cor</label>
-          <select id="cor">
-            <option>Preto</option>
-            <option>Branco</option>
-            <option>Azul</option>
-            <option>Verde</option>
-            <option>Lilás</option>
-            <option>Roxo</option>
-            <option>Natural</option>
-            <option>Gold</option>
-            <option>Grafite</option>
-            <option>Desert</option>
-            <option>Amarelo</option>
-            <option>Vermelho</option>
-            <option>Rosa</option>
-            <option>Laranja</option>
-          </select>
-
-          <label for="avaria">🧩 Avarias do aparelho</label>
-          <select id="avaria">
-            <option>Sem avarias</option>
-            <option>Arranhado</option>
-            <option>Trincado</option>
-            <option>Defeito</option>
-            <option>Reparado</option>
-          </select>
-
-          <label for="valorAvaria">💸 Valor extra de desconto por avaria (R$)</label>
-          <input id="valorAvaria" type="number" value="0" placeholder="Ex: 300" />
-
-          <label for="desval">📉 Aplicar desvalorização padrão?</label>
-          <select id="desval">
-            <option>Sim</option>
-            <option>Não</option>
-          </select>
-        </div>
-
-        <div class="section teal">
-          <h2>🛍️ Modelo desejado</h2>
-
-          <label for="modeloDesejado">Modelo desejado</label>
-          <input id="modeloDesejado" placeholder="Ex: iPhone 16 Pro Max 256GB" />
-
-          <label for="valorNovo">💰 Valor do iPhone desejado (R$)</label>
-          <input id="valorNovo" type="number" placeholder="Ex: 8990" />
-        </div>
-
-        <div class="section red">
-          <h2>⚙️ Ações</h2>
-          <p class="section-desc">
-            O restante do sistema foi mantido. Agora a busca respeita exatamente o modelo digitado e a base de fornecedores fica fixa no código.
-          </p>
-
-          <div class="actions-3">
-            <button type="button" class="btn-dark" onclick="avaliar()">✅ Avaliar Upgrade</button>
-            <button type="button" class="btn-orange" onclick="exportarPDF()">📄 Exportar PDF</button>
-            <button type="button" class="btn-gray" onclick="limparTudo()">♻️ Limpar tudo</button>
-          </div>
-
-          <div class="mini-box">
-            <strong>Importante:</strong><br>
-            o campo de busca não usa mais compatibilidade solta para misturar linhas parecidas.<br>
-            Ele separa <strong>modelo base</strong>, <strong>Plus</strong>, <strong>Pro</strong> e <strong>Pro Max</strong> corretamente.
-          </div>
-        </div>
-
-        <div class="full" id="resultado"></div>
-      </div>
-
-      <div class="footer-note no-print">Sistema pronto para usar direto no navegador.</div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</header>
+<div class="dashboard">
+  <aside class="promo-panel" aria-label="Campanha de upgrade">
+    <img class="promo-image" src="banner_upgrade.png" alt="Seu iPhone vale mais aqui: ilustração de dois iPhones em uma troca" />
+  </aside>
+  <main class="form-stack">
+    <section class="panel" id="dadosCliente">
+      <div class="panel-heading"><div class="panel-icon blue-icon">▣</div><div><h2>Dados do iPhone do cliente</h2><p>Encontre na tabela o modelo e o valor de referência.</p></div></div>
+      <label for="modeloEntrada">Modelo do iPhone</label><input id="modeloEntrada" placeholder="Ex.: iPhone 15 Pro Max 256GB" autocomplete="off" />
+      <div class="inline-grid"><div><label for="valorFornecedor">Revenda base (uso interno)</label><div class="eye-row"><input id="valorFornecedor" type="password" inputmode="decimal" placeholder="Selecione na tabela" /><button type="button" class="toggle-olho eye-button" onclick="toggleFornecedor()" title="Mostrar/ocultar valor">👁</button></div></div><div class="search-button-wrap"><button type="button" class="btn-primary" onclick="analisarTabelaFornecedores()">🔎 Procurar opções</button></div></div>
+      <div id="selectedOptionBadge" style="display:none"></div><div id="fornecedorEncontrado" class="found-box" style="display:none"></div>
+      <div id="opcoesEncontradasWrap" style="display:none"><label>Opções encontradas nas tabelas</label><div id="opcoesEncontradas" class="options-list"></div></div>
+      <details class="supplier-details"><summary>📦 Informações da base de fornecedores</summary><p>As tabelas continuam dentro do JavaScript, no bloco <code>TABELAS_FORNECEDORES_RAW</code>. A busca respeita modelo, variante e capacidade.</p><div class="stats"><div class="stat"><small>Registros</small><strong id="totalRegistros">0</strong></div><div class="stat"><small>Fornecedores</small><strong id="totalFornecedores">0</strong></div><div class="stat"><small>Compatíveis</small><strong id="totalCompativeis">0</strong></div><div class="stat"><small>Menor revenda</small><strong id="menorValor">R$ 0,00</strong></div></div></details>
+    </section>
+    <section class="panel">
+      <div class="panel-heading"><div class="panel-icon violet-icon">⚙</div><div><h2>Condições do aparelho</h2><p>Os ajustes são calculados automaticamente.</p></div></div>
+      <div class="inline-grid"><div><label for="bateria">Saúde da bateria (%)</label><input id="bateria" type="number" min="0" max="100" placeholder="Ex.: 88" /></div><div><label for="cor">Cor</label><select id="cor"><option>Preto</option><option>Branco</option><option>Azul</option><option>Verde</option><option>Lilás</option><option>Roxo</option><option>Natural</option><option>Gold</option><option>Grafite</option><option>Desert</option><option>Amarelo</option><option>Vermelho</option><option>Rosa</option><option>Laranja</option></select></div></div>
+      <div class="inline-grid"><div><label for="nota">Possui nota fiscal?</label><select id="nota"><option>Sim</option><option>Não</option></select></div><div><label for="reparo">Já teve reparo?</label><select id="reparo"><option>Não</option><option>Sim</option></select></div></div>
+      <div class="inline-grid"><div><label for="caixa">Possui caixa?</label><select id="caixa"><option>Sim</option><option>Não</option></select></div><div><label for="avaria">Avarias</label><select id="avaria"><option>Sem avarias</option><option>Arranhado</option><option>Trincado</option><option>Defeito</option><option>Reparado</option></select></div></div>
+      <label for="valorAvaria">Valor extra de desconto por avaria (R$)</label><input id="valorAvaria" type="number" min="0" value="0" />
+    </section>
+    <section class="panel purple-tint"><div class="panel-heading"><div class="panel-icon violet-icon">◆</div><div><h2>Ajuste de desvalorização geral</h2><p>Valor padrão já definido. Personalize apenas se desejar.</p></div></div><label for="desvalValor">Desvalorização geral (R$)</label><input id="desvalValor" type="number" min="0" step="10" value="200" inputmode="decimal" /><p class="hint">🔒 Ajuste interno da loja: não aparece na proposta nem na imagem enviada ao cliente.</p></section>
+    <section class="panel"><div class="panel-heading"><div class="panel-icon green-icon">↗</div><div><h2>iPhone desejado</h2><p>Informe o modelo e o preço de venda ao cliente.</p></div></div><label for="modeloDesejado">Modelo desejado</label><input id="modeloDesejado" placeholder="Ex.: iPhone 18 Pro Max 256GB" /><label for="valorNovo">Valor do aparelho desejado (R$)</label><input id="valorNovo" type="number" min="0" placeholder="Ex.: 8990" /></section>
+    <div class="form-actions"><button class="btn-primary" onclick="avaliar()">✅ Avaliar upgrade</button><button class="btn-light" onclick="limparTudo()">♻ Limpar tudo</button></div>
+  </main>
+  <aside class="results-stack">
+    <section class="panel result-overview"><div class="panel-heading"><div class="panel-icon green-icon">▥</div><div><h2>Resultado da avaliação</h2><p>Valor baseado na tabela e nas condições informadas.</p></div></div><div class="highlight-money"><small>Valor de compra do aparelho</small><strong id="previewValor">R$ 0,00</strong></div><p class="hint">Resultado calculado após clicar em “Avaliar upgrade”.</p></section>
+    <section class="panel profit-panel" id="lucroInterno"><div class="panel-heading"><div class="panel-icon pink-icon">$</div><div><h2>Margem de lucro da operação</h2><p>Somente para controle da loja. Não aparece na imagem ou na mensagem ao cliente.</p></div></div><div class="profit-row"><span>Preço de revenda da tabela (margem já incluída)</span><strong id="profitRevenda">—</strong></div><div class="profit-row"><span>Valor pago no iPhone do cliente</span><strong id="profitCompra">—</strong></div><div class="profit-row"><span>Lucro previsto na revenda do usado</span><strong id="profitUsado">—</strong></div><div class="profit-row"><span>Lucro fixo na venda do novo</span><strong id="profitNovo">R$ 500,00</strong></div><div class="profit-total"><span>Lucro bruto total previsto</span><strong id="profitTotal">—</strong></div><p class="hint">Estimativa antes de taxas, impostos, reparos e outros custos. O preço da tabela já contém R$ 500 de margem do usado; não são somados novamente. Em valores manuais, a revenda estimada é o valor-base + R$ 500.</p></section>
+    <section class="panel"><div class="panel-heading"><div class="panel-icon blue-icon">▤</div><div><h2>Proposta ao cliente</h2><p>Os valores e detalhes internos não são compartilhados.</p></div></div><div id="resultado"><div class="empty-state">Preencha os dados do aparelho para gerar a avaliação, copiar a mensagem e criar a arte da proposta.</div></div></section>
+  </aside>
+</div>
+<footer class="app-footer">Painel interno • Avaliação de upgrade</footer>
+</div>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
   <script>
@@ -1187,7 +1111,7 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
     const corInput = document.getElementById("cor");
     const avariaInput = document.getElementById("avaria");
     const valorAvariaInput = document.getElementById("valorAvaria");
-    const desvalInput = document.getElementById("desval");
+    const desvalValorInput = document.getElementById("desvalValor");
     const modeloDesejadoInput = document.getElementById("modeloDesejado");
     const valorNovoInput = document.getElementById("valorNovo");
     const resultadoDiv = document.getElementById("resultado");
@@ -1838,17 +1762,6 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
       selecionarOpcao(0);
     }
 
-    function recarregarBaseFornecedores() {
-      ultimoParseTabela = parseTabelaFornecedores(TABELAS_FORNECEDORES_RAW);
-      opcoesCompativeis = [];
-      opcaoSelecionada = null;
-      opcoesEncontradasDiv.innerHTML = "";
-      opcoesEncontradasWrap.style.display = "none";
-      mostrarFornecedorSelecionado(null);
-      atualizarEstatisticas(ultimoParseTabela, []);
-      alert("Base de fornecedores recarregada a partir do código.");
-    }
-
     function construirDadosAvaliacao() {
       const valorFornecedor = Number(valorFornecedorInput.value) || 0;
       const bateria = Number(bateriaInput.value) || 0;
@@ -1856,7 +1769,7 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
       const reparo = reparoInput.value;
       const caixa = caixaInput.value;
       const cor = corInput.value;
-      const desval = desvalInput.value;
+      const descontoDesval = Math.max(0, Number(desvalValorInput.value) || 0);
       const avaria = avariaInput.value;
       const valorAvaria = Number(valorAvariaInput.value) || 0;
       const modeloEntrada = modeloEntradaInput.value.trim();
@@ -1875,7 +1788,7 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
 
       const descontoCaixa = caixa === "Não" ? 100 : 0;
       const descontoCor = ["Lilás", "Amarelo", "Vermelho", "Rosa"].includes(cor) ? 100 : 0;
-      const descontoDesval = desval === "Sim" ? 200 : 0;
+      
       const descontoAvaria = valorAvaria > 0 ? valorAvaria : 0;
 
       if (aprovado) {
@@ -1890,10 +1803,21 @@ LISTA DE SEMINOVOS AQUI NA TAQUARA*
         { emoji: "🔋", titulo: "Bateria", descricao: bateria ? `Saúde informada: ${bateria}%` : "Sem informação", valor: descontoBateria, classe: "emoji-green" },
         { emoji: "📦", titulo: "Caixa", descricao: caixa === "Não" ? "Sem caixa" : "Com caixa", valor: descontoCaixa, classe: "emoji-blue" },
         { emoji: "🎨", titulo: "Cor", descricao: `Cor informada: ${cor}`, valor: descontoCor, classe: "emoji-yellow" },
-        { emoji: "📉", titulo: "Desvalorização padrão", descricao: desval === "Sim" ? "Aplicada" : "Não aplicada", valor: descontoDesval, classe: "emoji-purple" },
+        { emoji: "📉", titulo: "Desvalorização geral (interna)", descricao: "Ajuste definido pela loja", valor: descontoDesval, classe: "emoji-purple" },
         { emoji: "🧩", titulo: "Avaria extra", descricao: avaria, valor: descontoAvaria, classe: "emoji-red" }
       ];
 
+      // Painel interno: preço de revenda do usado = preço listado na tabela, já com margem.
+      // Quando digitado manualmente, o valor-base de compra será acrescido de R$ 500 para simular a revenda.
+      // A tabela já contém R$ 500 de margem na revenda do usado.
+      // O campo manual é o valor-base pago pelo usado (preço da tabela menos R$ 500).
+      // Nunca acrescentar R$ 500 novamente ao preço original da tabela.
+      const precoRevendaUsado = (opcaoSelecionada && Math.abs(valorFornecedor - Number(opcaoSelecionada.valor)) < 0.01)
+        ? Number(opcaoSelecionada.valorOriginal)
+        : valorFornecedor + AJUSTE_REVENDA_FORNECEDOR;
+      const lucroRevendaUsado = precoRevendaUsado - valorAvaliado;
+      const lucroVendaNovo = 500;
+      const lucroTotalPrevisto = lucroRevendaUsado + lucroVendaNovo;
       const totalDescontos = descontos.reduce((acc, item) => acc + item.valor, 0);
       const diferenca = valorNovo - valorAvaliado;
       const bateriaDescricao = bateria
@@ -1927,7 +1851,7 @@ DIFERENÇA: ${formatarMoeda(diferenca)} VALOR PROMOCIONAL Á VISTA
         reparo,
         caixa,
         cor,
-        desval,
+        descontoDesval,
         avaria,
         valorAvaria,
         modeloEntrada,
@@ -1939,6 +1863,10 @@ DIFERENÇA: ${formatarMoeda(diferenca)} VALOR PROMOCIONAL Á VISTA
         aprovado,
         mensagem,
         descontos,
+        precoRevendaUsado,
+        lucroRevendaUsado,
+        lucroVendaNovo,
+        lucroTotalPrevisto,
         fornecedorSelecionado: opcaoSelecionada
       };
     }
@@ -1970,6 +1898,12 @@ DIFERENÇA: ${formatarMoeda(diferenca)} VALOR PROMOCIONAL Á VISTA
         valorNovoInput.focus();
         return;
       }
+
+      document.getElementById("previewValor").textContent = dados.aprovado && dados.valorAvaliado > 0 ? formatarMoeda(dados.valorAvaliado) : "Não aprovado";
+      document.getElementById("profitRevenda").textContent = dados.aprovado ? formatarMoeda(dados.precoRevendaUsado) : "—";
+      document.getElementById("profitCompra").textContent = dados.aprovado ? formatarMoeda(dados.valorAvaliado) : "—";
+      document.getElementById("profitUsado").textContent = dados.aprovado ? formatarMoeda(dados.lucroRevendaUsado) : "—";
+      document.getElementById("profitTotal").textContent = dados.aprovado ? formatarMoeda(dados.lucroTotalPrevisto) : "—";
 
       if (!dados.aprovado || dados.valorAvaliado <= 0) {
         resultadoDiv.innerHTML = `
@@ -2076,16 +2010,16 @@ ${dados.fornecedorSelecionado.detalhes ? `Observações: ${dados.fornecedorSelec
             <pre id="msg">${dados.mensagem}</pre>
           </div>
 
-          <div class="actions-3 no-print">
+          <div class="actions-2 no-print">
             <button class="btn-blue" onclick="copiar()">📋 Copiar mensagem</button>
-            <button class="btn-green" onclick="whatsapp()">💬 Enviar texto no WhatsApp</button>
-            <button class="btn-orange" onclick="exportarPDF()">📄 Exportar PDF</button>
+
+
           </div>
 
           <div class="client-card-wrap">
             <div id="clientCard" class="client-card">
               <div class="client-card-top">
-                <div class="client-brand">UPGRADE APPLE • AVALIAÇÃO</div>
+                <div class="client-brand">AVALIAÇÃO DE UPGRADE</div>
                 <div class="client-badge">🔥 OFERTA VÁLIDA HOJE</div>
               </div>
 
@@ -2093,6 +2027,8 @@ ${dados.fornecedorSelecionado.detalhes ? `Observações: ${dados.fornecedorSelec
               <div class="client-subtitle">
                 Você já pode usar o seu iPhone como parte do pagamento do novo aparelho. Aproveite essa oportunidade e garanta sua troca com condição especial. 🚀✨
               </div>
+
+              <img class="trade-photo" alt="Dois iPhones e setas verdes ilustrando a troca de aparelho" src="arte_troca_iphones.png" />
 
               <div class="client-highlight-grid">
                 <div class="client-highlight">
@@ -2160,16 +2096,6 @@ ${dados.fornecedorSelecionado.detalhes ? `Observações: ${dados.fornecedorSelec
       alert("Mensagem copiada!");
     }
 
-    function whatsapp() {
-      const msg = document.getElementById("msg");
-      if (!msg) {
-        alert("Faça a avaliação primeiro.");
-        return;
-      }
-      const texto = encodeURIComponent(msg.innerText);
-      window.open(`https://wa.me/?text=${texto}`, "_blank");
-    }
-
     async function gerarImagemBlob() {
       const card = document.getElementById("clientCard");
       if (!card) {
@@ -2177,6 +2103,10 @@ ${dados.fornecedorSelecionado.detalhes ? `Observações: ${dados.fornecedorSelec
         return null;
       }
 
+      if (typeof html2canvas !== "function") {
+        alert("A biblioteca de imagens não carregou. Confira a conexão e recarregue a página.");
+        return null;
+      }
       const canvas = await html2canvas(card, {
         scale: 2,
         useCORS: true,
@@ -2221,93 +2151,8 @@ ${dados.fornecedorSelecionado.detalhes ? `Observações: ${dados.fornecedorSelec
         } catch (e) {}
       } else {
         alert("Seu navegador não suporta compartilhamento direto. A imagem será baixada.");
-        baixarImagemAvaliacao();
+        const u = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = u; a.download = "avaliacao-upgrade.png"; a.click(); setTimeout(() => URL.revokeObjectURL(u),1000);
       }
-    }
-
-    function exportarPDF() {
-      const dados = ultimaAvaliacao || construirDadosAvaliacao();
-
-      if (!dados.modeloEntrada || !dados.valorFornecedor || !dados.modeloDesejado || !dados.valorNovo) {
-        alert("Preencha os dados e faça a avaliação antes de exportar o PDF.");
-        return;
-      }
-
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF({ orientation: "p", unit: "mm", format: "a4" });
-
-      const x = 14;
-      let y = 16;
-
-      function linha(t, size = 11, bold = false) {
-        doc.setFont("helvetica", bold ? "bold" : "normal");
-        doc.setFontSize(size);
-        const linhas = doc.splitTextToSize(String(t), 180);
-        doc.text(linhas, x, y);
-        y += linhas.length * 6;
-      }
-
-      function titulo(t, size = 16) {
-        doc.setFont("helvetica", "bold");
-        doc.setFontSize(size);
-        doc.text(t, x, y);
-        y += 8;
-      }
-
-      function secao(t) {
-        if (y > 270) {
-          doc.addPage();
-          y = 18;
-        }
-        y += 2;
-        doc.setDrawColor(220, 226, 234);
-        doc.line(x, y, 196, y);
-        y += 7;
-        titulo(t, 13);
-      }
-
-      titulo("Avaliação de iPhone - Upgrade", 18);
-      linha(`Data: ${new Date().toLocaleString("pt-BR")}`, 10);
-      linha(`Status: ${dados.aprovado && dados.valorAvaliado > 0 ? "Upgrade aprovado" : "Upgrade não aprovado"}`, 10, true);
-
-      secao("Dados principais");
-      linha(`Modelo de entrada: ${dados.modeloEntrada}`);
-      linha(`Valor de revenda base: ${formatarMoeda(dados.valorFornecedor)}`);
-      linha(`Modelo desejado: ${dados.modeloDesejado}`);
-      linha(`Valor do aparelho desejado: ${formatarMoeda(dados.valorNovo)}`);
-
-      secao("Condição do aparelho");
-      linha(`Bateria: ${dados.bateria || 0}%`);
-      linha(`Nota fiscal: ${dados.nota}`);
-      linha(`Já teve reparo: ${dados.reparo}`);
-      linha(`Possui caixa: ${dados.caixa}`);
-      linha(`Cor: ${dados.cor}`);
-      linha(`Avaria: ${dados.avaria}`);
-      linha(`Desvalorização padrão: ${dados.desval}`);
-
-      if (dados.fornecedorSelecionado) {
-        secao("Fornecedor selecionado");
-        linha(`Fornecedor: ${dados.fornecedorSelecionado.fornecedor}`);
-        linha(`Modelo localizado: ${dados.fornecedorSelecionado.modeloOriginal}`);
-        linha(`Valor original do fornecedor: ${formatarMoeda(dados.fornecedorSelecionado.valorOriginal)}`);
-        linha(`Revenda aplicada: ${formatarMoeda(dados.fornecedorSelecionado.valor)} (- ${formatarMoeda(AJUSTE_REVENDA_FORNECEDOR)})`);
-        if (dados.fornecedorSelecionado.bateria) linha(`Bateria encontrada: ${dados.fornecedorSelecionado.bateria}%`);
-        if (dados.fornecedorSelecionado.cores && dados.fornecedorSelecionado.cores.length) linha(`Cores encontradas: ${dados.fornecedorSelecionado.cores.join(", ")}`);
-        if (dados.fornecedorSelecionado.detalhes) linha(`Observações: ${dados.fornecedorSelecionado.detalhes}`);
-      }
-
-      secao("Descontos aplicados");
-      dados.descontos.forEach(item => linha(`${item.titulo}: ${item.valor > 0 ? "- " + formatarMoeda(item.valor) : formatarMoeda(0)} (${item.descricao})`));
-
-      secao("Resultado");
-      linha(`Total de descontos: ${formatarMoeda(dados.totalDescontos)}`, 11, true);
-      linha(`Valor avaliado final: ${formatarMoeda(dados.valorAvaliado)}`, 11, true);
-      linha(`Diferença / entrada: ${formatarMoeda(dados.diferenca)}`, 11, true);
-
-      secao("Mensagem enviada ao cliente");
-      linha(dados.mensagem, 10);
-
-      doc.save(`avaliacao-upgrade-${(dados.modeloEntrada || "iphone").replace(/[^\w\d]+/g, "-").toLowerCase()}.pdf`);
     }
 
     function limparTudo() {
@@ -2320,10 +2165,12 @@ ${dados.fornecedorSelecionado.detalhes ? `Observações: ${dados.fornecedorSelec
       corInput.value = "Preto";
       avariaInput.value = "Sem avarias";
       valorAvariaInput.value = "0";
-      desvalInput.value = "Sim";
+      desvalValorInput.value = "200";
       modeloDesejadoInput.value = "";
       valorNovoInput.value = "";
-      resultadoDiv.innerHTML = "";
+      resultadoDiv.innerHTML = '<div class="empty-state">Preencha os dados do aparelho para gerar a avaliação, copiar a mensagem e criar a arte da proposta.</div>';
+      document.getElementById("previewValor").textContent = "R$ 0,00";
+      ["profitRevenda", "profitCompra", "profitUsado", "profitTotal"].forEach(id => document.getElementById(id).textContent = "—");
       opcoesCompativeis = [];
       opcaoSelecionada = null;
       opcoesEncontradasDiv.innerHTML = "";
